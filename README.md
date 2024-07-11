@@ -1,16 +1,27 @@
-## Hi there 👋
+# 👋 Hi, I'm Jesús David Posada Escobar (POSESCO) 👨‍🔧🔧⚙️🚀
 
-<!--
-**posesco/posesco** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## 📝 About Me
 
-Here are some ideas to get you started:
+I am a Telecommunications Technologist with experience since 2018 in on-premise and cloud servers 🌐. I work with programming languages like Python 🐍, JavaScript 💻, Bash 🖥️, and PHP. I possess skills in various public clouds such as AWS and Azure ☁️. Additionally, I am proficient in version control tools with Git and public repositories like GitHub and GitLab 📂, managing pipelines on these platforms 🔧🚀.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### 💻 Languages:
+[![My Skills](https://skillicons.dev/icons?i=py,js,php,bash&perline=4)](https://skillicons.dev)
+
+### 🛠️ Skills:
+[![My Skills](https://skillicons.dev/icons?i=git,github,gitlab,docker&perline=9)](https://skillicons.dev)
+
+### ☁️ Clouds:
+[![My Skills](https://skillicons.dev/icons?i=azure,aws&perline=9)](https://skillicons.dev)
+
+
+## 📫 How to reach me::
+<a href="https://x.com/posesco"><img alt="X.com" src="https://img.shields.io/twitter/follow/posesco"></a>
+
+## ⚙️ &nbsp;GitHub Analytics
+
+<p align="center">
+  <a href="https://github.com/AprendeIngenia">
+    <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api?username=posesco&show_icons=true&theme=algolia&include_all_commits=true&count_private=true"/>
+    <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=posesco&layout=compact&langs_count=8&theme=algolia"/>
+  </a>
+</p>
