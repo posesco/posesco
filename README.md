@@ -1,4 +1,4 @@
-# 👋 Hi, I'm Jesús David Posada Escobar (POSESCO) 👨‍🔧🔧⚙️🚀
+# 👋 Hi, I'm Jesús David Posada Escobar 👨‍🔧🔧⚙️🚀
 
 ## 📝 About Me
 
