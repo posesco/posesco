@@ -1,0 +1,65 @@
+/* ========================================
+   CSS VARIABLES - Design Tokens
+   ======================================== */
+
+:root {
+    /* Color Palette */
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --success-color: #28a745;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-light: #999;
+    --bg-white: #ffffff;
+    --bg-light: #f8f9fa;
+    --bg-gradient-light: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --bg-gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    
+    /* Typography */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-base: 16px;
+    --font-size-small: 0.9em;
+    --font-size-medium: 1.1em;
+    --font-size-large: 1.3em;
+    --font-size-xl: 1.8em;
+    --font-size-xxl: 2.5em;
+    --line-height: 1.6;
+    --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Spacing */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 15px;
+    --spacing-lg: 20px;
+    --spacing-xl: 30px;
+    --spacing-xxl: 40px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 10px;
+    --radius-lg: 15px;
+    --radius-xl: 20px;
+    --radius-round: 25px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
+    --shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.2);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Container */
+    --container-max-width: 1200px;
+    --content-max-width: 800px;
+    
+    /* Z-index layers */
+    --z-index-base: 1;
+    --z-index-dropdown: 100;
+    --z-index-modal: 1000;
+}

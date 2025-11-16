@@ -1,0 +1,149 @@
+/* ========================================
+   RESPONSIVE DESIGN - Mobile First
+   ======================================== */
+
+/* Tablet Styles (max-width: 768px) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .subtitle {
+        font-size: 1.1em;
+    }
+
+    .intro {
+        font-size: 1em;
+    }
+    
+    header {
+        padding: var(--spacing-lg);
+    }
+
+    .section {
+        padding: var(--spacing-lg);
+    }
+    
+    /* Single column layouts on mobile */
+    .highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .methodology-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .languages {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .social-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Mobile Styles (max-width: 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: var(--spacing-sm);
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    header {
+        padding: var(--spacing-md);
+    }
+
+    .section {
+        padding: var(--spacing-md);
+    }
+
+    .highlight-card {
+        padding: var(--spacing-md);
+    }
+
+    .method-card {
+        padding: var(--spacing-md);
+    }
+
+    .lang-item {
+        min-width: 120px;
+        padding: var(--spacing-md);
+    }
+
+    .lang-item .flag {
+        font-size: 2em;
+    }
+}
+
+/* Large Desktop (min-width: 1400px) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .highlights {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    header,
+    .section {
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+
+    .social-btn {
+        color: black;
+        text-decoration: underline;
+    }
+
+    footer {
+        color: black;
+    }
+
+    /* Hide interactive elements when printing */
+    .social-btn:hover,
+    .highlight-card:hover,
+    .tech-item:hover,
+    .lang-item:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
