@@ -13,7 +13,7 @@
     --bg-white: #ffffff;
     --bg-light: #f8f9fa;
     --bg-gradient-light: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    --bg-gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-gradient-main: linear-gradient(135deg, #0d0f12 0%, #764ba2 100%);
     
     /* Typography */
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
