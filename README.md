@@ -56,8 +56,8 @@ Telecommunications Technologist with **6+ years of experience** building reliabl
 - **CMS**: WordPress
 
 ### 💻 Programming & Scripting
-[![Skills](https://skillicons.dev/icons?i=python,javascript,php,bash)](https://skillicons.dev)
-- **Python** | **JavaScript** | **PHP** | **Bash**
+[![Skills](https://skillicons.dev/icons?i=bash,python,go,javascript,php)](https://skillicons.dev)
+- **Bash** | **Python** | **Go** | **JavaScript** | **PHP** | 
 
 ### 🔧 Version Control & Collaboration
 [![Skills](https://skillicons.dev/icons?i=git,github,gitlab)](https://skillicons.dev)
