@@ -1,12 +1,12 @@
-# 👋 Hi, I'm Jesús David Posada Escobar
+# Hi, I'm Jesús David Posada Escobar
 
-## 🚀 DevOps Engineer | SRE | Observability & Automation Specialist
+## DevOps Engineer | SRE | Observability & Automation Specialist
 
 Telecommunications Technologist with **6+ years of experience** building reliable, observable, and automated infrastructure. Passionate about transforming legacy systems into modern, cloud-native environments with focus on observability and DevOps best practices.
 
 ---
 
-## 💼 Professional Highlights
+## Professional Highlights
 
 - 🔍 **Observability Champion**: Transformed raw log systems into comprehensive monitoring stacks (Elastic Stack, Grafana, Prometheus)
 - 🐳 **Containerization Expert**: Migrated monolithic on-premise applications to containerized architectures
@@ -16,7 +16,7 @@ Telecommunications Technologist with **6+ years of experience** building reliabl
 
 ---
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 ### 🔭 Observability & Monitoring
 [![Skills](https://skillicons.dev/icons?i=grafana,prometheus)](https://skillicons.dev)
@@ -43,7 +43,7 @@ Telecommunications Technologist with **6+ years of experience** building reliabl
 ### ☁️ Cloud Platforms
 [![Skills](https://skillicons.dev/icons?i=aws,azure)](https://skillicons.dev)
 - **AWS** | **Azure**
-- 📜 **AWS Certified Cloud Practitioner**
+- **AWS Certified Cloud Practitioner**
 
 ### 🗄️ Databases & Caching
 [![Skills](https://skillicons.dev/icons?i=mysql,redis)](https://skillicons.dev)
@@ -70,7 +70,7 @@ Telecommunications Technologist with **6+ years of experience** building reliabl
 
 ---
 
-## 📋 Methodologies & Best Practices
+## Methodologies & Best Practices
 
 ### 🔄 Agile Frameworks
 - **SCRUM**: Sprint planning, daily standups, retrospectives
@@ -84,14 +84,14 @@ Telecommunications Technologist with **6+ years of experience** building reliabl
 
 ---
 
-## 🌍 Languages
+## Languages
 
 - 🇪🇸 **Spanish**: Native
 - 🇬🇧 **English**: B1 (Intermediate)
 
 ---
 
-## 📫 Let's Connect
+## Let's Connect
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/posesco/)
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/posesco)
@@ -99,7 +99,7 @@ Telecommunications Technologist with **6+ years of experience** building reliabl
 
 ---
 
-## 📊 GitHub Analytics
+## GitHub Analytics
 
 <p align="center">
   <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api?username=posesco&show_icons=true&theme=algolia&include_all_commits=true&count_private=true"/>
