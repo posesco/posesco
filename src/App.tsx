@@ -138,7 +138,7 @@ export default function App() {
             <a href="https://github.com/posesco" target="_blank" rel="noreferrer" className="p-2 hover:text-indigo-400 transition-colors">
               <Github size={20} />
             </a>
-            <a href="https://linkedin.com/posesco" target="_blank" rel="noreferrer" className="p-2 hover:text-indigo-400 transition-colors">
+            <a href="https://www.linkedin.com/in/posesco/" target="_blank" rel="noreferrer" className="p-2 hover:text-indigo-400 transition-colors">
               <Linkedin size={20} />
             </a>
           </div>
@@ -344,7 +344,7 @@ export default function App() {
               <span>GitHub</span>
             </a>
             <a 
-              href="https://linkedin.com/posesco" 
+              href="https://www.linkedin.com/in/posesco/" 
               target="_blank" 
               rel="noreferrer"
               className="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group"
