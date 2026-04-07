@@ -138,7 +138,7 @@ export default function App() {
             <a href="https://github.com/posesco" target="_blank" rel="noreferrer" className="p-2 hover:text-indigo-400 transition-colors">
               <Github size={20} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 hover:text-indigo-400 transition-colors">
+            <a href="https://linkedin.com/posesco" target="_blank" rel="noreferrer" className="p-2 hover:text-indigo-400 transition-colors">
               <Linkedin size={20} />
             </a>
           </div>
@@ -152,9 +152,9 @@ export default function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Badge className="mb-6 bg-indigo-500/10 text-indigo-400 border-indigo-500/20 px-4 py-1.5">
+          {/* <Badge className="mb-6 bg-indigo-500/10 text-indigo-400 border-indigo-500/20 px-4 py-1.5">
             Available for new opportunities
-          </Badge>
+          </Badge> */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
             Jesús David <span className="gradient-text">Posada Escobar</span>
           </h1>
@@ -328,7 +328,7 @@ export default function App() {
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <a 
-              href="mailto:jesus.posada.tecno@gmail.com" 
+              href="mailto:posesco@gmail.com" 
               className="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group"
             >
               <Mail className="text-indigo-400 group-hover:scale-110 transition-transform" />
@@ -344,7 +344,7 @@ export default function App() {
               <span>GitHub</span>
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://linkedin.com/posesco" 
               target="_blank" 
               rel="noreferrer"
               className="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group"
