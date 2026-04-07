@@ -396,3 +396,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+build/
+old/
+dist/
+coverage/
+.DS_Store
+.env*
+!.env.example
