@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { cn } from "./lib/utils";
 import { Blog } from "./components/Blog";
+import { useLanguage } from "./i18n/LanguageContext";
 
 interface SectionProps {
   children: React.ReactNode;
@@ -76,6 +77,8 @@ const SkillCard = ({ title, icon: Icon, skills }: SkillCardProps) => (
 );
 
 export default function App() {
+  const { t, language, setLanguage } = useLanguage();
+
   const techStack = [
     { title: "Observability & Monitoring", icon: Eye, skills: ["Prometheus", "Grafana", "ELK", "Datadog"] },
     { title: "IaC & Config Management", icon: Settings, skills: ["Terraform", "Ansible", "CloudFormation"] },
@@ -89,17 +92,17 @@ export default function App() {
 
   const experiences = [
     {
-      role: "DevOps Engineer | SRE",
+      role: t("experience.roles.devops_sre"),
       company: "Professional Space",
-      period: "Present",
-      description: "Specializing in observability, automation, and infrastructure as code to ensure high availability and scalability of critical systems.",
+      period: t("experience.present"),
+      description: t("experience.descriptions.devops_sre"),
       tags: ["Kubernetes", "Terraform", "Prometheus", "AWS"]
     },
     {
-      role: "Automation Specialist",
+      role: t("experience.roles.automation_spec"),
       company: "Tech Solutions",
-      period: "Previous",
-      description: "Implemented CI/CD pipelines and automated infrastructure provisioning, reducing deployment times by 40%.",
+      period: t("experience.previous"),
+      description: t("experience.descriptions.automation_spec"),
       tags: ["Jenkins", "Ansible", "Python"]
     }
   ];
@@ -126,15 +129,37 @@ export default function App() {
             </span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-            <a href="#about" className="hover:text-slate-50 transition-colors">About</a>
-            <a href="#skills" className="hover:text-slate-50 transition-colors">Skills</a>
-            <a href="#experience" className="hover:text-slate-50 transition-colors">Experience</a>
+            <a href="#about" className="hover:text-slate-50 transition-colors">{t("nav.about")}</a>
+            <a href="#skills" className="hover:text-slate-50 transition-colors">{t("nav.skills")}</a>
+            <a href="#experience" className="hover:text-slate-50 transition-colors">{t("nav.experience")}</a>
             <a href="#blog" className="hover:text-slate-50 transition-colors flex items-center gap-1.5">
-              <Rss size={14} /> Blog
+              <Rss size={14} /> {t("nav.blog")}
             </a>
-            <a href="#contact" className="hover:text-slate-50 transition-colors">Contact</a>
+            <a href="#contact" className="hover:text-slate-50 transition-colors">{t("nav.contact")}</a>
           </div>
           <div className="flex items-center gap-4">
+            {/* Language Switcher */}
+            <div className="flex items-center bg-slate-900/50 border border-slate-800 rounded-lg p-1 mr-2">
+              <button 
+                onClick={() => setLanguage('en')}
+                className={cn(
+                  "px-2 py-0.5 text-[10px] font-bold rounded transition-all",
+                  language === 'en' ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "text-slate-500 hover:text-slate-300"
+                )}
+              >
+                EN
+              </button>
+              <button 
+                onClick={() => setLanguage('es')}
+                className={cn(
+                  "px-2 py-0.5 text-[10px] font-bold rounded transition-all",
+                  language === 'es' ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "text-slate-500 hover:text-slate-300"
+                )}
+              >
+                ES
+              </button>
+            </div>
+
             <a href="https://github.com/posesco" target="_blank" rel="noreferrer" className="p-2 hover:text-indigo-400 transition-colors">
               <Github size={20} />
             </a>
@@ -152,22 +177,18 @@ export default function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {/* <Badge className="mb-6 bg-indigo-500/10 text-indigo-400 border-indigo-500/20 px-4 py-1.5">
-            Available for new opportunities
-          </Badge> */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            Jesús David <span className="gradient-text">Posada Escobar</span>
+            {t("hero.title")} <span className="gradient-text">{t("hero.subtitle")}</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            DevOps Engineer & SRE Specialist focused on building resilient, 
-            automated, and observable cloud infrastructures.
+            {t("hero.description")}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a 
               href="#contact" 
               className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/20 flex items-center gap-2"
             >
-              Get in touch <ChevronRight size={18} />
+              {t("hero.cta_primary")} <ChevronRight size={18} />
             </a>
             <a 
               href="https://github.com/posesco" 
@@ -175,7 +196,7 @@ export default function App() {
               rel="noreferrer"
               className="px-8 py-4 glass-panel hover:bg-slate-800 font-semibold rounded-xl transition-all flex items-center gap-2"
             >
-              View GitHub <Github size={18} />
+              {t("hero.cta_secondary")} <Github size={18} />
             </a>
           </div>
         </motion.div>
@@ -189,10 +210,10 @@ export default function App() {
       <div className="border-y border-slate-900 bg-slate-950/50">
         <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { label: "Experience", value: "5+ Years", icon: Activity },
-            { label: "Cloud Projects", value: "20+", icon: Cloud },
-            { label: "Automations", value: "100+", icon: Terminal },
-            { label: "Uptime Focus", value: "99.9%", icon: Cpu },
+            { label: t("stats.experience"), value: t("stats.experience_value"), icon: Activity },
+            { label: t("stats.projects"), value: t("stats.projects_value"), icon: Cloud },
+            { label: t("stats.automations"), value: t("stats.automations_value"), icon: Terminal },
+            { label: t("stats.uptime"), value: t("stats.uptime_value"), icon: Cpu },
           ].map((stat, i) => (
             <motion.div 
               key={i}
@@ -219,25 +240,21 @@ export default function App() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-6">About Me</h2>
+            <h2 className="text-3xl font-bold mb-6">{t("about.title")}</h2>
             <p className="text-slate-400 text-lg leading-relaxed mb-6">
-              I am a passionate DevOps Engineer and SRE with a deep focus on observability 
-              and automation. My mission is to bridge the gap between development and 
-              operations by implementing robust CI/CD pipelines and scalable infrastructure.
+              {t("about.p1")}
             </p>
             <p className="text-slate-400 text-lg leading-relaxed mb-8">
-              With expertise in cloud-native technologies and a strong background in 
-              Linux systems, I help organizations achieve high availability and 
-              operational excellence through modern SRE practices.
+              {t("about.p2")}
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-                <h4 className="font-semibold mb-1">Methodologies</h4>
+                <h4 className="font-semibold mb-1">{t("about.methodologies")}</h4>
                 <p className="text-sm text-slate-500">Agile, Scrum, SRE, DevOps</p>
               </div>
               <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-                <h4 className="font-semibold mb-1">Languages</h4>
-                <p className="text-sm text-slate-500">Spanish, English</p>
+                <h4 className="font-semibold mb-1">{t("about.languages")}</h4>
+                <p className="text-sm text-slate-500">{t("about.languages_list")}</p>
               </div>
             </div>
           </motion.div>
@@ -266,10 +283,9 @@ export default function App() {
       {/* Skills Section */}
       <Section id="skills" className="bg-slate-950/50">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Technical Stack</h2>
+          <h2 className="text-3xl font-bold mb-4">{t("skills.title")}</h2>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            A comprehensive set of tools and technologies I use to build and 
-            maintain modern infrastructure.
+            {t("skills.subtitle")}
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -282,7 +298,7 @@ export default function App() {
       {/* Experience Section */}
       <Section id="experience">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Experience</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">{t("experience.title")}</h2>
           <div className="space-y-12">
             {experiences.map((exp, i) => (
               <motion.div 
@@ -321,10 +337,9 @@ export default function App() {
       <Section id="contact" className="mb-20">
         <div className="glass-panel rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500" />
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Let's build something stable</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t("contact.title")}</h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
-            I'm always open to discussing new projects, automation challenges, 
-            or SRE opportunities. Feel free to reach out!
+            {t("contact.description")}
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <a 
@@ -332,7 +347,7 @@ export default function App() {
               className="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group"
             >
               <Mail className="text-indigo-400 group-hover:scale-110 transition-transform" />
-              <span>Email Me</span>
+              <span>{t("contact.email")}</span>
             </a>
             <a 
               href="https://github.com/posesco" 
@@ -341,7 +356,7 @@ export default function App() {
               className="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group"
             >
               <Github className="text-indigo-400 group-hover:scale-110 transition-transform" />
-              <span>GitHub</span>
+              <span>{t("contact.github")}</span>
             </a>
             <a 
               href="https://www.linkedin.com/in/posesco/" 
@@ -350,7 +365,7 @@ export default function App() {
               className="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group"
             >
               <Linkedin className="text-indigo-400 group-hover:scale-110 transition-transform" />
-              <span>LinkedIn</span>
+              <span>{t("contact.linkedin")}</span>
             </a>
           </div>
         </div>
@@ -360,11 +375,11 @@ export default function App() {
       <footer className="py-12 border-t border-slate-900">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-slate-500 text-sm">
-            © {new Date().getFullYear()} Jesús David Posada Escobar. Built with React & Tailwind.
+            © {new Date().getFullYear()} Jesús David Posada Escobar. {t("footer.built_with")}
           </div>
           <div className="flex items-center gap-6 text-slate-500 text-sm">
             <a href="https://github.com/posesco/posesco" target="_blank" rel="noreferrer" className="hover:text-indigo-400 flex items-center gap-1">
-              Source Code <ExternalLink size={14} />
+              {t("footer.source_code")} <ExternalLink size={14} />
             </a>
           </div>
         </div>

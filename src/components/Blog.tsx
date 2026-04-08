@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Calendar, Clock, BookOpen, ChevronRight } from "lucide-react";
 import { cn } from "../lib/utils";
+import { useLanguage } from "../i18n/LanguageContext";
 
 interface Post {
   id: string;
@@ -17,7 +18,7 @@ interface Post {
 }
 
 // Helper to extract frontmatter, title and excerpt from markdown content
-const parseMarkdown = (id: string, rawContent: string): Post => {
+const parseMarkdown = (id: string, rawContent: string, lang: string): Post => {
   const frontmatterMatch = rawContent.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
   
   let metadata: Record<string, string> = {};
@@ -36,7 +37,10 @@ const parseMarkdown = (id: string, rawContent: string): Post => {
   }
 
   const title = metadata.title || id.replace(/-/g, " ");
-  const date = metadata.date || new Date().toLocaleDateString('es-ES', { 
+  
+  // Format date based on language
+  const dateObj = metadata.date ? new Date(metadata.date) : new Date();
+  const date = dateObj.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { 
     year: 'numeric', 
     month: 'long', 
     day: 'numeric' 
@@ -45,16 +49,17 @@ const parseMarkdown = (id: string, rawContent: string): Post => {
   // Extract a better excerpt: skip the first H1 if it exists in the content
   const contentLines = content.trim().split("\n");
   const firstParagraph = contentLines.find(l => l.trim() && !l.startsWith("#"));
-  const excerpt = firstParagraph ? firstParagraph.substring(0, 150) + "..." : "Sin descripción";
+  const excerpt = firstParagraph ? firstParagraph.substring(0, 150) + "..." : "No description";
   
   const tags = metadata.tags;
-  const readTime = metadata.read_time || "5 min read";
+  const readTime = metadata.read_time || (lang === 'es' ? "5 min de lectura" : "5 min read");
   const draft = metadata.draft === "true";
 
   return { id, title, date, excerpt, content, tags, readTime, draft };
 };
 
 export const Blog = () => {
+  const { t, language } = useLanguage();
   const [posts, setPosts] = useState<Post[]>([]);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -68,7 +73,7 @@ export const Blog = () => {
       for (const path in modules) {
         const content = await modules[path]() as string;
         const id = path.split("/").pop()?.replace(".md", "") || path;
-        const post = parseMarkdown(id, content);
+        const post = parseMarkdown(id, content, language);
         
         if (post.draft) continue;
         
@@ -80,7 +85,7 @@ export const Blog = () => {
     };
 
     loadPosts();
-  }, []);
+  }, [language]);
 
   if (loading) {
     return (
@@ -102,9 +107,9 @@ export const Blog = () => {
             className="grid gap-8"
           >
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Blog & Noticias</h2>
+              <h2 className="text-3xl font-bold mb-4">{t("blog.title")}</h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                Artículos sobre DevOps, SRE, automatización y las últimas tendencias en infraestructura cloud.
+                {t("blog.subtitle")}
               </p>
             </div>
 
@@ -131,7 +136,7 @@ export const Blog = () => {
                     {post.excerpt}
                   </p>
                   <div className="flex items-center gap-2 text-sm font-semibold text-indigo-400">
-                    Leer más <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    {t("blog.read_more")} <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </motion.div>
               ))}
@@ -150,7 +155,7 @@ export const Blog = () => {
               className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition-colors mb-12 group"
             >
               <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-              Volver al blog
+              {t("blog.back")}
             </button>
 
             <article className="prose prose-invert prose-indigo max-w-none">
@@ -189,7 +194,7 @@ export const Blog = () => {
                 onClick={() => setSelectedPost(null)}
                 className="px-6 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all text-sm font-semibold"
               >
-                Ver otros posts
+                {t("blog.view_others")}
               </button>
             </div>
           </motion.div>
