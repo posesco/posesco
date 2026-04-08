@@ -108,11 +108,11 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen selection:bg-indigo-500/30">
+    <div id="top" className="min-h-screen selection:bg-indigo-500/30">
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 glass-panel border-x-0 border-t-0">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 group cursor-default">
+          <a href="#top" className="flex items-center gap-2 group cursor-pointer transition-opacity hover:opacity-80">
             <span className="font-mono font-bold text-xl tracking-tighter flex items-center gap-1">
               <span className="text-indigo-500/80 transition-transform group-hover:-translate-x-0.5">[</span>
               <span className="relative">
@@ -127,7 +127,7 @@ export default function App() {
                 ia
               </span>
             </span>
-          </div>
+          </a>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
             <a href="#about" className="hover:text-slate-50 transition-colors">{t("nav.about")}</a>
             <a href="#skills" className="hover:text-slate-50 transition-colors">{t("nav.skills")}</a>
