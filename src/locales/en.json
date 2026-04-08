@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Jesús David",
+    "subtitle": "Posada Escobar",
+    "description": "DevOps Engineer & SRE Specialist focused on building resilient, automated, and observable cloud infrastructures.",
+    "cta_primary": "Get in touch",
+    "cta_secondary": "View GitHub"
+  },
+  "stats": {
+    "experience": "Experience",
+    "experience_value": "5+ Years",
+    "projects": "Cloud Projects",
+    "projects_value": "20+",
+    "automations": "Automations",
+    "automations_value": "100+",
+    "uptime": "Uptime Focus",
+    "uptime_value": "99.9%"
+  },
+  "about": {
+    "title": "About Me",
+    "p1": "I am a passionate DevOps Engineer and SRE with a deep focus on observability and automation. My mission is to bridge the gap between development and operations by implementing robust CI/CD pipelines and scalable infrastructure.",
+    "p2": "With expertise in cloud-native technologies and a strong background in Linux systems, I help organizations achieve high availability and operational excellence through modern SRE practices.",
+    "methodologies": "Methodologies",
+    "languages": "Languages",
+    "languages_list": "Spanish, English"
+  },
+  "skills": {
+    "title": "Technical Stack",
+    "subtitle": "A comprehensive set of tools and technologies I use to build and maintain modern infrastructure."
+  },
+  "experience": {
+    "title": "Experience",
+    "present": "Present",
+    "previous": "Previous",
+    "roles": {
+      "devops_sre": "DevOps Engineer | SRE",
+      "automation_spec": "Automation Specialist"
+    },
+    "descriptions": {
+      "devops_sre": "Specializing in observability, automation, and infrastructure as code to ensure high availability and scalability of critical systems.",
+      "automation_spec": "Implemented CI/CD pipelines and automated infrastructure provisioning, reducing deployment times by 40%."
+    }
+  },
+  "blog": {
+    "title": "Latest Insights",
+    "subtitle": "Sharing my thoughts on DevOps, SRE, and cloud technologies.",
+    "read_more": "Read article",
+    "back": "Back to blog",
+    "view_others": "View other posts"
+  },
+  "contact": {
+    "title": "Let's build something stable",
+    "description": "I'm always open to discussing new projects, automation challenges, or SRE opportunities. Feel free to reach out!",
+    "email": "Email Me",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "footer": {
+    "built_with": "Built with React & Tailwind.",
+    "source_code": "Source Code"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "blog": "Blog",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Jesús David",
+    "subtitle": "Posada Escobar",
+    "description": "Ingeniero DevOps y Especialista SRE enfocado en construir infraestructuras cloud resilientes, automatizadas y observables.",
+    "cta_primary": "Contáctame",
+    "cta_secondary": "Ver GitHub"
+  },
+  "stats": {
+    "experience": "Experiencia",
+    "experience_value": "5+ Años",
+    "projects": "Proyectos Cloud",
+    "projects_value": "20+",
+    "automations": "Automatizaciones",
+    "automations_value": "100+",
+    "uptime": "Enfoque en Uptime",
+    "uptime_value": "99.9%"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "p1": "Soy un apasionado Ingeniero DevOps y SRE con un profundo enfoque en la observabilidad y la automatización. Mi misión es cerrar la brecha entre el desarrollo y las operaciones mediante la implementación de pipelines de CI/CD robustos e infraestructura escalable.",
+    "p2": "Con experiencia en tecnologías nativas de la nube y una sólida formación en sistemas Linux, ayudo a las organizaciones a alcanzar la alta disponibilidad y la excelencia operativa a través de prácticas modernas de SRE.",
+    "methodologies": "Metodologías",
+    "languages": "Idiomas",
+    "languages_list": "Español, Inglés"
+  },
+  "skills": {
+    "title": "Stack Tecnológico",
+    "subtitle": "Un conjunto completo de herramientas y tecnologías que utilizo para construir y mantener infraestructura moderna."
+  },
+  "experience": {
+    "title": "Experiencia",
+    "present": "Presente",
+    "previous": "Anterior",
+    "roles": {
+      "devops_sre": "Ingeniero DevOps | SRE",
+      "automation_spec": "Especialista en Automatización"
+    },
+    "descriptions": {
+      "devops_sre": "Especializado en observabilidad, automatización e infraestructura como código para asegurar la alta disponibilidad y escalabilidad de sistemas críticos.",
+      "automation_spec": "Implementación de pipelines de CI/CD y automatización del aprovisionamiento de infraestructura, reduciendo los tiempos de despliegue en un 40%."
+    }
+  },
+  "blog": {
+    "title": "Últimas Publicaciones",
+    "subtitle": "Compartiendo mis pensamientos sobre DevOps, SRE y tecnologías cloud.",
+    "read_more": "Leer artículo",
+    "back": "Volver al blog",
+    "view_others": "Ver otros posts"
+  },
+  "contact": {
+    "title": "Construyamos algo estable",
+    "description": "Siempre estoy abierto a discutir nuevos proyectos, desafíos de automatización u oportunidades SRE. ¡No dudes en contactarme!",
+    "email": "Enviame un Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "footer": {
+    "built_with": "Construido con React y Tailwind.",
+    "source_code": "Código Fuente"
+  }
+}
