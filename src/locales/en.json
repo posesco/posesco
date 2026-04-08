@@ -40,13 +40,20 @@
     "present": "Present",
     "previous": "Previous",
     "roles": {
-      "devops_sre": "DevOps Engineer | SRE",
-      "automation_spec": "Automation Specialist"
-    },
-    "descriptions": {
-      "devops_sre": "Specializing in observability, automation, and infrastructure as code to ensure high availability and scalability of critical systems.",
-      "automation_spec": "Implemented CI/CD pipelines and automated infrastructure provisioning, reducing deployment times by 40%."
-    }
+      "ing_sre": {
+        "title": "DevOps Engineer | SRE",
+        "company": "ING Bank",
+        "time_range": "2023 - Present",
+        "description": "Specialized in observability, automation, and infrastructure as code to ensure high availability and scalability of critical systems.",
+        "tech_stack": ["Kubernetes", "Terraform", "Prometheus", "AWS"]
+      },
+      "wiedii_sysadmin": {
+        "title": "Security & Infrastructure Architect",
+        "company": "WIEDII SAS",
+        "time_range": "2020 - 2023",
+        "description": "Implemented CI/CD pipelines and automated infrastructure provisioning, reducing deployment times by 40%.",
+        "tech_stack": ["Jenkins", "Ansible", "Python"]
+      }
   },
   "blog": {
     "title": "Latest Insights",

@@ -96,18 +96,20 @@ export default function App() {
 
   const experiences = [
     {
-      role: t("experience.roles.devops_sre"),
-      company: "Professional Space",
+      role: t("experience.roles.ing_sre.title"),
+      company: t("experience.roles.ing_sre.company"),
       period: t("experience.present"),
-      description: t("experience.descriptions.devops_sre"),
-      tags: ["Kubernetes", "Terraform", "Prometheus", "AWS"]
+      time_range: t("experience.roles.ing_sre.time_range"),
+      description: t("experience.roles.ing_sre.description"),
+      tags: t("experience.roles.ing_sre.tech_stack")
     },
     {
-      role: t("experience.roles.automation_spec"),
-      company: "Tech Solutions",
+      role: t("experience.roles.wiedii_sysadmin.title"),
+      company: t("experience.roles.wiedii_sysadmin.company"),
       period: t("experience.previous"),
-      description: t("experience.descriptions.automation_spec"),
-      tags: ["Jenkins", "Ansible", "Python"]
+      time_range: t("experience.roles.wiedii_sysadmin.time_range"),
+      description: t("experience.roles.wiedii_sysadmin.description"),
+      tags: t("experience.roles.wiedii_sysadmin.tech_stack")
     }
   ];
 
