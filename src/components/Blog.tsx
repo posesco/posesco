@@ -11,23 +11,47 @@ interface Post {
   date: string;
   excerpt: string;
   content: string;
+  tags?: string;
+  readTime?: string;
+  draft: boolean;
 }
 
-// Helper to extract title and excerpt from markdown content
-const parseMarkdown = (id: string, content: string): Post => {
-  const lines = content.split("\n");
-  const title = lines[0].replace("# ", "").trim() || "Sin título";
-  const excerpt = lines.find(l => l.trim() && !l.startsWith("#"))?.substring(0, 150) + "..." || "Sin descripción";
+// Helper to extract frontmatter, title and excerpt from markdown content
+const parseMarkdown = (id: string, rawContent: string): Post => {
+  const frontmatterMatch = rawContent.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
   
-  // For a real app, you'd use frontmatter, but here we'll simulate a date
-  // based on the filename or a fixed one for now.
-  const date = new Date().toLocaleDateString('es-ES', { 
+  let metadata: Record<string, string> = {};
+  let content = rawContent;
+
+  if (frontmatterMatch) {
+    const yaml = frontmatterMatch[1];
+    content = frontmatterMatch[2];
+    
+    yaml.split("\n").forEach(line => {
+      const [key, ...value] = line.split(":");
+      if (key && value.length > 0) {
+        metadata[key.trim()] = value.join(":").trim();
+      }
+    });
+  }
+
+  const title = metadata.title || id.replace(/-/g, " ");
+  const date = metadata.date || new Date().toLocaleDateString('es-ES', { 
     year: 'numeric', 
     month: 'long', 
     day: 'numeric' 
   });
+  
+  // Extract a better excerpt: skip the first H1 if it exists in the content
+  const contentLines = content.trim().split("\n");
+  const firstParagraph = contentLines.find(l => l.trim() && !l.startsWith("#"));
+  const excerpt = firstParagraph ? firstParagraph.substring(0, 150) + "..." : "Sin descripción";
+  
+  const tags = metadata.tags;
+  const readTime = metadata.read_time || "5 min read";
+  const draft = metadata.draft === "true";
 
-  return { id, title, date, excerpt, content };
+  return { id, title, date, excerpt, content, tags, readTime, draft };
 };
 
 export const Blog = () => {
@@ -44,7 +68,11 @@ export const Blog = () => {
       for (const path in modules) {
         const content = await modules[path]() as string;
         const id = path.split("/").pop()?.replace(".md", "") || path;
-        loadedPosts.push(parseMarkdown(id, content));
+        const post = parseMarkdown(id, content);
+        
+        if (post.draft) continue;
+        
+        loadedPosts.push(post);
       }
       
       setPosts(loadedPosts);
@@ -74,7 +102,7 @@ export const Blog = () => {
             className="grid gap-8"
           >
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Blog & Pensamientos</h2>
+              <h2 className="text-3xl font-bold mb-4">Blog & Noticias</h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
                 Artículos sobre DevOps, SRE, automatización y las últimas tendencias en infraestructura cloud.
               </p>
@@ -93,7 +121,7 @@ export const Blog = () => {
                       <Calendar size={14} /> {post.date}
                     </span>
                     <span className="flex items-center gap-1">
-                      <Clock size={14} /> 5 min read
+                      <Clock size={14} /> {post.readTime}
                     </span>
                   </div>
                   <h3 className="text-xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">
@@ -126,13 +154,18 @@ export const Blog = () => {
             </button>
 
             <article className="prose prose-invert prose-indigo max-w-none">
-              <div className="flex items-center gap-4 text-sm font-mono text-indigo-400 mb-8">
-                <span className="flex items-center gap-1">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-mono text-indigo-400 mb-8">
+                <span className="flex items-center gap-1.5">
                   <Calendar size={16} /> {selectedPost.date}
                 </span>
-                <span className="flex items-center gap-1">
-                  <BookOpen size={16} /> {selectedPost.id.replace(/-/g, " ")}
+                <span className="flex items-center gap-1.5">
+                  <Clock size={16} /> {selectedPost.readTime}
                 </span>
+                {selectedPost.tags && (
+                  <span className="flex items-center gap-1.5">
+                    <BookOpen size={16} /> {selectedPost.tags}
+                  </span>
+                )}
               </div>
               
               <div className="markdown-body">

@@ -1,3 +1,10 @@
+---
+title: ¿Por qué usar OpenClaw?
+date: 08/04/2026
+draft: false
+tags: #openclaw, #ai
+read_time: 5 min
+---
 # ¿Por qué todo el mundo habla de OpenClaw (y por qué probablemente no lo necesitas)?
 
 Si has estado atento a GitHub o a las redes sociales de programación últimamente, seguro has visto que **OpenClaw** tiene más estrellas que el propio repositorio de Linux. Todo el mundo parece estar creando contenido sobre esta herramienta, pero a nivel práctico, ¿realmente marca la diferencia en tu día a día? 
@@ -9,6 +16,7 @@ Aquí tienes un resumen pragmático de qué es OpenClaw, los riesgos que conllev
 ---
 
 ## ¿Qué es exactamente OpenClaw?
+![OpenClaw](https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/openclaw-dark.svg)
 
 Para simplificarlo: **OpenClaw es un programa que instalas en tu computadora para conectarlo con un modelo de Inteligencia Artificial** (como las APIs de OpenAI, Anthropic o Google). 
 

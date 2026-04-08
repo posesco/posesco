@@ -1,3 +1,10 @@
+---
+title: Mi primer post en el Blog
+date: 07/04/2026
+draft: false
+tags: #devops, #sre
+read_time: 1 min
+---
 # Mi primer post en el Blog
 
 ¡Hola! Bienvenidos a mi rincón de pensamientos sobre DevOps y SRE.
