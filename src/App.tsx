@@ -79,6 +79,10 @@ const SkillCard = ({ title, icon: Icon, skills }: SkillCardProps) => (
 export default function App() {
   const { t, language, setLanguage } = useLanguage();
 
+  // Avatar image path. If empty, the default gradient box will be shown.
+  // Example: "/avatar.jpg" (place the file in the public/ folder)
+  const avatarUrl = "/avatar.png";
+
   const techStack = [
     { title: "Observability & Monitoring", icon: Eye, skills: ["Prometheus", "Grafana", "ELK", "Datadog"] },
     { title: "IaC & Config Management", icon: Settings, skills: ["Terraform", "Ansible", "CloudFormation"] },
@@ -265,10 +269,19 @@ export default function App() {
             className="relative"
           >
             <div className="aspect-square rounded-3xl overflow-hidden glass-panel p-2">
-              <div className="w-full h-full rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center">
-                <Layers size={120} className="text-white/20 absolute" />
-                <Terminal size={80} className="text-white" />
-              </div>
+              {avatarUrl ? (
+                <img 
+                  src={avatarUrl} 
+                  alt="Jesús David Posada Escobar" 
+                  className="w-full h-full rounded-2xl object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-full h-full rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center">
+                  <Layers size={120} className="text-white/20 absolute" />
+                  <Terminal size={80} className="text-white" />
+                </div>
+              )}
             </div>
             {/* Decorative dots */}
             <div className="absolute -top-4 -right-4 w-24 h-24 grid grid-cols-4 gap-2 opacity-20">
