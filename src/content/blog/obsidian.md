@@ -1,6 +1,6 @@
 ---
 title: ¿Por qué usar Obsidian?
-date: 05/04/2026
+date: 04/05/2026
 draft: false
 tags: #obsidian, #ai
 read_time: 3 min
