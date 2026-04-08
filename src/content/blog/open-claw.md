@@ -2,7 +2,7 @@
 title: ¿Por qué usar OpenClaw?
 date: 04/08/2026
 draft: false
-tags: #openclaw, #ai
+tags: openclaw, ai
 read_time: 5 min
 ---
 # ¿Por qué todo el mundo habla de OpenClaw (y por qué probablemente no lo necesitas)?

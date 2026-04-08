@@ -2,7 +2,7 @@
 title: ¿Por qué usar Obsidian?
 date: 04/05/2026
 draft: false
-tags: #obsidian, #ai
+tags: obsidian, ai
 read_time: 3 min
 ---
 # Por qué Obsidian es la herramienta definitiva en la era de la IA

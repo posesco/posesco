@@ -2,7 +2,7 @@
 title: Mi primer post en el Blog
 date: 04/01/2026
 draft: false
-tags: #devops, #sre
+tags: devops, sre
 read_time: 1 min
 ---
 # Mi primer post en el Blog
