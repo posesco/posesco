@@ -8,7 +8,7 @@ type Translations = typeof en;
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (path: string) => string;
+  t: (path: string) => any;
 }
 
 const translations: Record<Language, Translations> = { en, es };
@@ -33,19 +33,19 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const setLanguage = (lang: Language) => setLanguageState(lang);
 
   // Función t: accede a objetos anidados usando strings tipo "nav.about"
-  const t = (path: string): string => {
+  const t = (path: string): any => {
     const keys = path.split('.');
     let result: any = translations[language];
     
     for (const key of keys) {
-      if (result && result[key]) {
+      if (result && result[key] !== undefined) {
         result = result[key];
       } else {
         return path; // Fallback a la key si no existe
       }
     }
     
-    return typeof result === 'string' ? result : path;
+    return result;
   };
 
   return (
