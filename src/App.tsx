@@ -328,7 +328,10 @@ export default function App() {
                   <h3 className="text-xl font-bold text-slate-50">{exp.role}</h3>
                   <span className="text-sm font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">{exp.period}</span>
                 </div>
-                <div className="text-indigo-300 font-medium mb-4">{exp.company}</div>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <div className="text-indigo-300 font-medium">{exp.company}</div>
+                  <div className="text-xs font-mono text-slate-500 italic">{exp.time_range}</div>
+                </div>
                 <p className="text-slate-400 mb-6 leading-relaxed">
                   {exp.description}
                 </p>

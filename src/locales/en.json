@@ -54,6 +54,7 @@
         "description": "Implemented CI/CD pipelines and automated infrastructure provisioning, reducing deployment times by 40%.",
         "tech_stack": ["Jenkins", "Ansible", "Python"]
       }
+    }
   },
   "blog": {
     "title": "Latest Insights",
