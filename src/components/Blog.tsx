@@ -21,7 +21,7 @@ interface Post {
   draft: boolean;
 }
 
-const parseMarkdown = (id: string, rawContent: string, lang: string): Post => {
+const parseMarkdown = (id: string, rawContent: string, lang: string): Post | null => {
   const frontmatterMatch = rawContent.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
   
   let metadata: Record<string, string> = {};
@@ -39,6 +39,9 @@ const parseMarkdown = (id: string, rawContent: string, lang: string): Post => {
     });
   }
 
+  const draft = metadata.draft === "true";
+  if (draft) return null;
+
   const title = metadata.title || id.replace(/-/g, " ");
   
   const dateObj = metadata.date ? new Date(metadata.date) : new Date();
@@ -54,7 +57,6 @@ const parseMarkdown = (id: string, rawContent: string, lang: string): Post => {
   
   const tags = metadata.tags;
   const readTime = metadata.read_time || (lang === 'es' ? "5 min de lectura" : "5 min read");
-  const draft = metadata.draft === "true";
 
   return { id, title, date, excerpt, content, tags, readTime, draft };
 };
@@ -69,18 +71,17 @@ export const Blog = () => {
     const loadPosts = async () => {
       const modules = import.meta.glob("../content/blog/*.md", { query: '?raw', import: 'default' });
       
-      const loadedPosts: Post[] = [];
-      for (const path in modules) {
+      const paths = Object.keys(modules);
+      const postPromises = paths.map(async (path) => {
         const content = await modules[path]() as string;
         const id = path.split("/").pop()?.replace(".md", "") || path;
-        const post = parseMarkdown(id, content, language);
-        
-        if (post.draft) continue;
-        
-        loadedPosts.push(post);
-      }
+        return parseMarkdown(id, content, language);
+      });
       
-      setPosts(loadedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
+      const allPosts = await Promise.all(postPromises);
+      const filteredPosts = allPosts.filter((post): post is Post => post !== null);
+      
+      setPosts(filteredPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
       setLoading(false);
     };
 

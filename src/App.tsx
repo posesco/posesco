@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { motion } from "motion/react";
 import { 
   Github, 
@@ -29,7 +29,7 @@ export default function App() {
   const { t, language, setLanguage } = useLanguage();
   const avatarUrl = "/avatar.png";
 
-  const experiences = [
+  const experiences = useMemo(() => [
     {
       role: t("experience.roles.ing_sre.title"),
       company: t("experience.roles.ing_sre.company"),
@@ -46,7 +46,7 @@ export default function App() {
       description: t("experience.roles.wiedii_sysadmin.description"),
       tags: t("experience.roles.wiedii_sysadmin.tech_stack")
     }
-  ];
+  ], [t]);
 
   return (
     <div id="top" className="min-h-screen selection:bg-indigo-500/30">
@@ -78,7 +78,7 @@ export default function App() {
                 href={`#${item}`} 
                 className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 group"
               >
-                {item === 'blog' && <Rss size={14} className="group-hover:rotate-12 transition-transform" />}
+                {item === 'blog' ? <Rss size={14} className="group-hover:rotate-12 transition-transform" /> : null}
                 {t(`nav.${item}`)}
               </a>
             ))}

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback, useMemo } from 'react';
 import en from '../locales/en.json';
 import es from '../locales/es.json';
 
@@ -21,7 +21,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     const saved = localStorage.getItem('language') as Language;
     if (saved && (saved === 'en' || saved === 'es')) return saved;
     
-    const browserLang = navigator.language.split('-')[0];
+    const browserLang = typeof navigator !== 'undefined' ? navigator.language.split('-')[0] : 'en';
     return browserLang === 'es' ? 'es' : 'en';
   });
 
@@ -30,10 +30,11 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     document.documentElement.lang = language;
   }, [language]);
 
-  const setLanguage = (lang: Language) => setLanguageState(lang);
+  const setLanguage = useCallback((lang: Language) => setLanguageState(lang), []);
 
   // Función t: accede a objetos anidados usando strings tipo "nav.about"
-  const t = (path: string): any => {
+  // Memoizamos t para que su referencia sea estable si el idioma no cambia
+  const t = useCallback((path: string): any => {
     const keys = path.split('.');
     let result: any = translations[language];
     
@@ -46,10 +47,17 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     }
     
     return result;
-  };
+  }, [language]);
+
+  // Memoizamos el valor del contexto para evitar re-renders innecesarios
+  const value = useMemo(() => ({
+    language,
+    setLanguage,
+    t
+  }), [language, setLanguage, t]);
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );
