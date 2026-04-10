@@ -1,12 +1,13 @@
 {
   "nav": {
-    "about": "Sobre mí",
+    "about": "Sobre Mí",
     "skills": "Habilidades",
     "experience": "Experiencia",
     "blog": "Blog",
     "contact": "Contacto"
   },
   "hero": {
+    "status": "chmod +x mi-carrera.sh",
     "title": "Jesús David",
     "subtitle": "Posada Escobar",
     "description": "Ingeniero DevOps y Especialista SRE enfocado en construir infraestructuras cloud resilientes, automatizadas y observables.",
@@ -20,23 +21,24 @@
     "projects_value": "20+",
     "automations": "Automatizaciones",
     "automations_value": "100+",
-    "uptime": "Enfoque en Uptime",
+    "uptime": "Enfoque Uptime",
     "uptime_value": "99.9%"
   },
   "about": {
+    "label": "Informacion_Perfil",
     "title": "Sobre Mí",
-    "p1": "Soy un apasionado Ingeniero DevOps y SRE con un profundo enfoque en la observabilidad y la automatización. Mi misión es cerrar la brecha entre el desarrollo y las operaciones mediante la implementación de pipelines de CI/CD robustos e infraestructura escalable.",
-    "p2": "Con experiencia en tecnologías nativas de la nube y una sólida formación en sistemas Linux, ayudo a las organizaciones a alcanzar la alta disponibilidad y la excelencia operativa a través de prácticas modernas de SRE.",
+    "p1": "Soy un apasionado Ingeniero DevOps y SRE con un profundo enfoque en observabilidad y automatización. Mi misión es cerrar la brecha entre desarrollo y operaciones mediante la implementación de pipelines de CI/CD robustos e infraestructura escalable.",
+    "p2": "Con experiencia en tecnologías cloud-native y una sólida base en sistemas Linux, ayudo a las organizaciones a alcanzar alta disponibilidad y excelencia operativa a través de prácticas modernas de SRE.",
     "methodologies": "Metodologías",
     "languages": "Idiomas",
     "languages_list": "Español, Inglés"
   },
   "skills": {
-    "title": "Stack Tecnológico",
+    "title": "Stack Técnico",
     "subtitle": "Un conjunto completo de herramientas y tecnologías que utilizo para construir y mantener infraestructura moderna."
   },
   "experience": {
-    "title": "Experiencia",
+    "title": "Trayectoria Profesional",
     "present": "Presente",
     "previous": "Anterior",
     "roles": {
@@ -51,13 +53,13 @@
         "title": "Arquitecto de Seguridad e Infraestructura",
         "company": "WIEDII SAS",
         "time_range": "2020 - 2023",
-        "description": "Implementación de pipelines de CI/CD y automatización del aprovisionamiento de infraestructura, reduciendo los tiempos de despliegue en un 40%.",
+        "description": "Implementé pipelines de CI/CD y automaticé el aprovisionamiento de infraestructura, reduciendo los tiempos de despliegue en un 40%.",
         "tech_stack": ["Jenkins", "Ansible", "Python"]
       }
     }
   },
   "blog": {
-    "title": "Últimas Publicaciones",
+    "title": "Últimas Ideas",
     "subtitle": "Compartiendo mis pensamientos sobre DevOps, SRE y tecnologías cloud.",
     "read_more": "Leer artículo",
     "back": "Volver al blog",
@@ -71,7 +73,7 @@
     "linkedin": "LinkedIn"
   },
   "footer": {
-    "built_with": "Construido con React y Tailwind.",
+    "built_with": "Construido con React & Tailwind.",
     "source_code": "Código Fuente"
   }
 }

@@ -6,6 +6,10 @@ import { ArrowLeft, Calendar, Clock, BookOpen, ChevronRight } from "lucide-react
 import { cn } from "../lib/utils";
 import { useLanguage } from "../i18n/LanguageContext";
 
+// UI Components
+import { Badge } from "./ui/Badge";
+import { Reveal } from "./ui/Reveal";
+
 interface Post {
   id: string;
   title: string;
@@ -17,7 +21,6 @@ interface Post {
   draft: boolean;
 }
 
-// Helper to extract frontmatter, title and excerpt from markdown content
 const parseMarkdown = (id: string, rawContent: string, lang: string): Post => {
   const frontmatterMatch = rawContent.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
   
@@ -38,7 +41,6 @@ const parseMarkdown = (id: string, rawContent: string, lang: string): Post => {
 
   const title = metadata.title || id.replace(/-/g, " ");
   
-  // Format date based on language
   const dateObj = metadata.date ? new Date(metadata.date) : new Date();
   const date = dateObj.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { 
     year: 'numeric', 
@@ -46,7 +48,6 @@ const parseMarkdown = (id: string, rawContent: string, lang: string): Post => {
     day: 'numeric' 
   });
   
-  // Extract a better excerpt: skip the first H1 if it exists in the content
   const contentLines = content.trim().split("\n");
   const firstParagraph = contentLines.find(l => l.trim() && !l.startsWith("#"));
   const excerpt = firstParagraph ? firstParagraph.substring(0, 150) + "..." : "No description";
@@ -66,7 +67,6 @@ export const Blog = () => {
 
   useEffect(() => {
     const loadPosts = async () => {
-      // Vite's import.meta.glob to load all markdown files in the blog directory
       const modules = import.meta.glob("../content/blog/*.md", { query: '?raw', import: 'default' });
       
       const loadedPosts: Post[] = [];
@@ -80,7 +80,7 @@ export const Blog = () => {
         loadedPosts.push(post);
       }
       
-      setPosts(loadedPosts);
+      setPosts(loadedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
       setLoading(false);
     };
 
@@ -89,8 +89,8 @@ export const Blog = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+      <div className="flex items-center justify-center py-24">
+        <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin shadow-[0_0_15px_rgba(99,102,241,0.3)]" />
       </div>
     );
   }
@@ -101,102 +101,120 @@ export const Blog = () => {
         {!selectedPost ? (
           <motion.div
             key="list"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="grid gap-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="w-full"
           >
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">{t("blog.title")}</h2>
-              <p className="text-slate-400 max-w-2xl mx-auto">
-                {t("blog.subtitle")}
-              </p>
+            <div className="text-center mb-20">
+              <Reveal>
+                <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">{t("blog.title")}</h2>
+                <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
+                  {t("blog.subtitle")}
+                </p>
+              </Reveal>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {posts.map((post) => (
-                <motion.div
-                  key={post.id}
-                  whileHover={{ y: -5 }}
-                  onClick={() => setSelectedPost(post)}
-                  className="glass-panel p-6 rounded-2xl cursor-pointer group transition-all hover:border-indigo-500/50"
-                >
-                  <div className="flex items-center gap-4 text-xs font-mono text-indigo-400 mb-4">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={14} /> {post.date}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock size={14} /> {post.readTime}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center gap-2 text-sm font-semibold text-indigo-400">
-                    {t("blog.read_more")} <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </motion.div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {posts.map((post, i) => (
+                <Reveal key={post.id} delay={i * 0.1}>
+                  <motion.div
+                    whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                    onClick={() => setSelectedPost(post)}
+                    className="glass-panel p-8 rounded-3xl cursor-pointer group flex flex-col h-full border-white/5 hover:border-indigo-500/30 transition-all"
+                  >
+                    <div className="flex items-center gap-4 text-[10px] font-mono text-indigo-400 uppercase tracking-widest mb-6">
+                      <span className="flex items-center gap-1.5 bg-indigo-500/10 px-2 py-1 rounded">
+                        <Calendar size={12} /> {post.date}
+                      </span>
+                      <span className="flex items-center gap-1.5 bg-slate-800/50 px-2 py-1 rounded text-slate-400">
+                        <Clock size={12} /> {post.readTime}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-2xl font-display font-bold mb-4 group-hover:text-indigo-400 transition-colors line-clamp-2 leading-tight">
+                      {post.title}
+                    </h3>
+                    
+                    <p className="text-slate-400 text-lg leading-relaxed mb-8 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    
+                    <div className="mt-auto flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-sm font-bold text-indigo-400 group-hover:gap-3 transition-all">
+                        {t("blog.read_more")} 
+                        <ChevronRight size={18} className="transition-transform" />
+                      </div>
+                      {post.tags && (
+                        <Badge variant="slate" className="text-[9px]">{post.tags.split(',')[0]}</Badge>
+                      )}
+                    </div>
+                  </motion.div>
+                </Reveal>
               ))}
             </div>
           </motion.div>
         ) : (
           <motion.div
             key="post"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="max-w-4xl mx-auto"
           >
             <button
               onClick={() => setSelectedPost(null)}
-              className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition-colors mb-12 group"
+              className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 font-bold transition-all mb-12 group"
             >
-              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+              <div className="p-2 rounded-xl bg-slate-900 border border-white/5 group-hover:border-indigo-500/30 transition-all">
+                <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+              </div>
               {t("blog.back")}
             </button>
 
-            <article className="prose prose-invert prose-indigo max-w-none">
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-mono text-indigo-400 mb-8">
-                <span className="flex items-center gap-1.5">
-                  <Calendar size={16} /> {selectedPost.date}
+            <article className="glass-panel rounded-[2.5rem] p-8 md:p-16 border-white/5">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[10px] font-mono text-indigo-400 uppercase tracking-widest mb-10">
+                <span className="flex items-center gap-1.5 px-2 py-1 bg-indigo-500/5 rounded">
+                  <Calendar size={14} /> {selectedPost.date}
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <Clock size={16} /> {selectedPost.readTime}
+                <span className="flex items-center gap-1.5 px-2 py-1 bg-slate-800/30 rounded text-slate-400">
+                  <Clock size={14} /> {selectedPost.readTime}
                 </span>
                 {selectedPost.tags && (
-                  <span className="flex items-center gap-1.5">
-                    <BookOpen size={16} /> {selectedPost.tags}
+                  <span className="flex items-center gap-1.5 px-2 py-1 bg-purple-500/5 rounded text-purple-400">
+                    <BookOpen size={14} /> {selectedPost.tags}
                   </span>
                 )}
               </div>
               
-              <div className="markdown-body">
+              <h1 className="text-4xl md:text-6xl font-display font-extrabold mb-12 tracking-tight leading-tight">
+                {selectedPost.title}
+              </h1>
+              
+              <div className="markdown-body text-lg leading-[1.8]">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {selectedPost.content}
                 </ReactMarkdown>
               </div>
-            </article>
 
-            <div className="mt-20 pt-10 border-t border-slate-800 flex justify-between items-center">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xl">
-                  J
+              <div className="mt-20 pt-12 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-8">
+                <div className="flex items-center gap-5">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center font-display font-extrabold text-2xl shadow-lg shadow-indigo-600/20">
+                    J
+                  </div>
+                  <div>
+                    <div className="font-display font-bold text-xl text-slate-50">Jesús David Posada</div>
+                    <div className="text-sm font-mono text-indigo-400 uppercase tracking-wider">DevOps Engineer | SRE</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-bold">Jesús David Posada</div>
-                  <div className="text-sm text-slate-500">DevOps Engineer | SRE</div>
-                </div>
+                <button
+                  onClick={() => setSelectedPost(null)}
+                  className="px-8 py-3 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 hover:bg-indigo-600 hover:text-white transition-all text-sm font-bold tracking-tight text-indigo-400 shadow-xl shadow-indigo-600/5"
+                >
+                  {t("blog.view_others")}
+                </button>
               </div>
-              <button
-                onClick={() => setSelectedPost(null)}
-                className="px-6 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all text-sm font-semibold"
-              >
-                {t("blog.view_others")}
-              </button>
-            </div>
+            </article>
           </motion.div>
         )}
       </AnimatePresence>

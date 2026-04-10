@@ -6,93 +6,28 @@ import {
   Mail, 
   ExternalLink, 
   ChevronRight, 
-  Eye, 
-  Settings, 
-  Box, 
-  RefreshCw, 
-  Cloud, 
-  Database, 
-  Globe, 
-  Code,
   Terminal,
-  Cpu,
   Layers,
-  Activity,
   Rss,
-  Sparkles
+  Sparkles,
+  Command
 } from "lucide-react";
 import { cn } from "./lib/utils";
 import { Blog } from "./components/Blog";
 import { useLanguage } from "./i18n/LanguageContext";
 
-interface SectionProps {
-  children: React.ReactNode;
-  className?: string;
-  id?: string;
-  key?: React.Key;
-}
+// UI Components
+import { Section } from "./components/ui/Section";
+import { Badge } from "./components/ui/Badge";
+import { SkillCard } from "./components/ui/SkillCard";
+import { Reveal } from "./components/ui/Reveal";
 
-const Section = ({ children, className, id }: SectionProps) => (
-  <section id={id} className={cn("py-20 px-6 max-w-7xl mx-auto", className)}>
-    {children}
-  </section>
-);
-
-interface BadgeProps {
-  children: React.ReactNode;
-  className?: string;
-  key?: React.Key;
-}
-
-const Badge = ({ children, className }: BadgeProps) => (
-  <span className={cn("px-3 py-1 text-xs font-medium rounded-full bg-slate-800 border border-slate-700 text-slate-300", className)}>
-    {children}
-  </span>
-);
-
-interface SkillCardProps {
-  title: string;
-  icon: any;
-  skills: string[];
-  key?: React.Key;
-}
-
-const SkillCard = ({ title, icon: Icon, skills }: SkillCardProps) => (
-  <motion.div 
-    whileHover={{ y: -5 }}
-    className="glass-panel p-6 rounded-2xl"
-  >
-    <div className="flex items-center gap-3 mb-4">
-      <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
-        <Icon size={24} />
-      </div>
-      <h3 className="text-lg font-semibold">{title}</h3>
-    </div>
-    <div className="flex flex-wrap gap-2">
-      {skills.map((skill) => (
-        <Badge key={skill}>{skill}</Badge>
-      ))}
-    </div>
-  </motion.div>
-);
+// Data
+import { techStack, stats } from "./data/portfolio";
 
 export default function App() {
   const { t, language, setLanguage } = useLanguage();
-
-  // Avatar image path. If empty, the default gradient box will be shown.
-  // Example: "/avatar.jpg" (place the file in the public/ folder)
   const avatarUrl = "/avatar.png";
-
-  const techStack = [
-    { title: "Observability & Monitoring", icon: Eye, skills: ["Prometheus", "Grafana", "ELK", "Datadog"] },
-    { title: "IaC & Config Management", icon: Settings, skills: ["Terraform", "Ansible", "CloudFormation"] },
-    { title: "Containerization", icon: Box, skills: ["Docker", "Kubernetes", "Helm"] },
-    { title: "CI/CD & Automation", icon: RefreshCw, skills: ["Jenkins", "GitLab CI", "GitHub Actions"] },
-    { title: "Cloud Platforms", icon: Cloud, skills: ["AWS", "Azure", "GCP"] },
-    { title: "Databases & Caching", icon: Database, skills: ["PostgreSQL", "MongoDB", "Redis"] },
-    { title: "Web Servers", icon: Globe, skills: ["Nginx", "Apache"] },
-    { title: "Programming", icon: Code, skills: ["Python", "Go", "Bash"] },
-  ];
 
   const experiences = [
     {
@@ -116,11 +51,11 @@ export default function App() {
   return (
     <div id="top" className="min-h-screen selection:bg-indigo-500/30">
       {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 glass-panel border-x-0 border-t-0">
+      <nav className="fixed top-0 w-full z-50 glass-panel !border-x-0 !border-t-0 !rounded-none backdrop-blur-2xl">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2 group cursor-pointer transition-opacity hover:opacity-80">
-            <span className="font-mono font-bold text-xl tracking-tighter flex items-center gap-1">
-              <span className="text-indigo-500/80 transition-transform group-hover:-translate-x-0.5">[</span>
+          <a href="#top" className="flex items-center gap-2 group cursor-pointer">
+            <div className="relative flex items-center gap-2 font-display font-bold text-xl tracking-tight">
+              <span className="text-indigo-500 transition-transform group-hover:-translate-x-0.5">&lt;</span>
               <span className="relative">
                 posesco
                 <Sparkles 
@@ -128,275 +63,294 @@ export default function App() {
                   className="absolute -top-1 -right-2 text-indigo-400 animate-pulse" 
                 />
               </span>
-              <span className="text-indigo-500/80 transition-transform group-hover:translate-x-0.5">]</span>
-              <span className="text-[10px] bg-indigo-500/10 text-indigo-400 px-1.5 py-0.5 rounded border border-indigo-500/20 ml-1 font-sans uppercase tracking-widest leading-none">
-                ia
-              </span>
-            </span>
+              <span className="text-indigo-500 transition-transform group-hover:translate-x-0.5">/&gt;</span>
+              <div className="hidden sm:flex items-center gap-1.5 ml-3 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[10px] text-emerald-500 font-mono uppercase tracking-widest">System Online</span>
+              </div>
+            </div>
           </a>
+          
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-            <a href="#about" className="hover:text-slate-50 transition-colors">{t("nav.about")}</a>
-            <a href="#skills" className="hover:text-slate-50 transition-colors">{t("nav.skills")}</a>
-            <a href="#experience" className="hover:text-slate-50 transition-colors">{t("nav.experience")}</a>
-            <a href="#blog" className="hover:text-slate-50 transition-colors flex items-center gap-1.5">
-              <Rss size={14} /> {t("nav.blog")}
-            </a>
-            <a href="#contact" className="hover:text-slate-50 transition-colors">{t("nav.contact")}</a>
+            {["about", "skills", "experience", "blog", "contact"].map((item) => (
+              <a 
+                key={item}
+                href={`#${item}`} 
+                className="hover:text-indigo-400 transition-colors flex items-center gap-1.5 group"
+              >
+                {item === 'blog' && <Rss size={14} className="group-hover:rotate-12 transition-transform" />}
+                {t(`nav.${item}`)}
+              </a>
+            ))}
           </div>
+
           <div className="flex items-center gap-4">
-            {/* Language Switcher */}
-            <div className="flex items-center bg-slate-900/50 border border-slate-800 rounded-lg p-1 mr-2">
-              <button 
-                onClick={() => setLanguage('en')}
-                className={cn(
-                  "px-2 py-0.5 text-[10px] font-bold rounded transition-all",
-                  language === 'en' ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "text-slate-500 hover:text-slate-300"
-                )}
-              >
-                EN
-              </button>
-              <button 
-                onClick={() => setLanguage('es')}
-                className={cn(
-                  "px-2 py-0.5 text-[10px] font-bold rounded transition-all",
-                  language === 'es' ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" : "text-slate-500 hover:text-slate-300"
-                )}
-              >
-                ES
-              </button>
+            <div className="flex items-center bg-slate-900/80 border border-white/5 rounded-full p-1 shadow-inner">
+              {['en', 'es'].map((lang) => (
+                <button 
+                  key={lang}
+                  onClick={() => setLanguage(lang as 'en' | 'es')}
+                  className={cn(
+                    "px-3 py-1 text-[10px] font-bold rounded-full transition-all uppercase",
+                    language === lang ? "bg-indigo-600 text-white shadow-lg" : "text-slate-500 hover:text-slate-300"
+                  )}
+                >
+                  {lang}
+                </button>
+              ))}
             </div>
 
-            <a href="https://github.com/posesco" target="_blank" rel="noreferrer" className="p-2 hover:text-indigo-400 transition-colors">
-              <Github size={20} />
-            </a>
-            <a href="https://www.linkedin.com/in/posesco/" target="_blank" rel="noreferrer" className="p-2 hover:text-indigo-400 transition-colors">
-              <Linkedin size={20} />
-            </a>
+            <div className="h-4 w-[1px] bg-white/5 mx-1 hidden sm:block" />
+
+            <div className="hidden sm:flex items-center gap-1">
+              <a href="https://github.com/posesco" target="_blank" rel="noreferrer" className="p-2 text-slate-400 hover:text-indigo-400 transition-colors">
+                <Github size={18} />
+              </a>
+              <a href="https://www.linkedin.com/in/posesco/" target="_blank" rel="noreferrer" className="p-2 text-slate-400 hover:text-indigo-400 transition-colors">
+                <Linkedin size={18} />
+              </a>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <Section className="pt-40 pb-32 flex flex-col items-center text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            {t("hero.title")} <span className="gradient-text">{t("hero.subtitle")}</span>
+      <Section className="pt-48 pb-32 flex flex-col items-center text-center overflow-visible">
+        <Reveal>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/5 border border-indigo-500/20 text-indigo-400 text-xs font-mono mb-8">
+            <Terminal size={14} />
+            <span>{t("hero.status") || "chmod +x my-career.sh"}</span>
+          </div>
+          <h1 className="text-5xl md:text-8xl font-display font-extrabold mb-8 tracking-tight leading-[1.1]">
+            {t("hero.title")} <br />
+            <span className="gradient-text italic px-2">{t("hero.subtitle")}</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
             {t("hero.description")}
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a 
+          <div className="flex flex-wrap justify-center gap-5">
+            <motion.a 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               href="#contact" 
-              className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/20 flex items-center gap-2"
+              className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-2xl transition-all shadow-xl shadow-indigo-600/20 flex items-center gap-2 group"
             >
-              {t("hero.cta_primary")} <ChevronRight size={18} />
-            </a>
-            <a 
+              {t("hero.cta_primary")} 
+              <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </motion.a>
+            <motion.a 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               href="https://github.com/posesco" 
               target="_blank" 
               rel="noreferrer"
-              className="px-8 py-4 glass-panel hover:bg-slate-800 font-semibold rounded-xl transition-all flex items-center gap-2"
+              className="px-8 py-4 glass-panel hover:bg-slate-800/80 font-bold rounded-2xl transition-all flex items-center gap-2"
             >
-              {t("hero.cta_secondary")} <Github size={18} />
-            </a>
+              <Github size={18} />
+              {t("hero.cta_secondary")}
+            </motion.a>
           </div>
-        </motion.div>
+        </Reveal>
 
-        {/* Floating elements for visual flair */}
-        <div className="absolute top-1/4 left-10 opacity-10 blur-3xl bg-indigo-500 w-64 h-64 rounded-full -z-10 animate-pulse" />
-        <div className="absolute bottom-1/4 right-10 opacity-10 blur-3xl bg-purple-500 w-64 h-64 rounded-full -z-10 animate-pulse delay-1000" />
+        {/* Decorative elements */}
+        <div className="absolute top-1/3 left-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-[120px] -z-10 animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-600/10 rounded-full blur-[120px] -z-10 animate-pulse delay-700" />
       </Section>
 
-      {/* Stats/Highlight Section */}
-      <div className="border-y border-slate-900 bg-slate-950/50">
-        <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { label: t("stats.experience"), value: t("stats.experience_value"), icon: Activity },
-            { label: t("stats.projects"), value: t("stats.projects_value"), icon: Cloud },
-            { label: t("stats.automations"), value: t("stats.automations_value"), icon: Terminal },
-            { label: t("stats.uptime"), value: t("stats.uptime_value"), icon: Cpu },
-          ].map((stat, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="flex flex-col items-center md:items-start"
-            >
-              <div className="flex items-center gap-2 text-indigo-400 mb-1">
-                <stat.icon size={16} />
-                <span className="text-sm font-mono uppercase tracking-widest">{stat.label}</span>
+      {/* Stats Section */}
+      <div className="border-y border-white/5 bg-slate-950/40 backdrop-blur-sm relative z-10">
+        <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-12">
+          {stats(t).map((stat, i) => (
+            <Reveal key={i} delay={i * 0.1} y={10} className="flex flex-col items-center md:items-start group">
+              <div className="flex items-center gap-2 text-indigo-400 mb-2 group-hover:scale-110 transition-transform origin-left">
+                <stat.icon size={18} />
+                <span className="text-[10px] font-mono uppercase tracking-[0.2em]">{stat.label}</span>
               </div>
-              <span className="text-2xl font-bold text-slate-50">{stat.value}</span>
-            </motion.div>
+              <span className="text-3xl font-display font-bold text-slate-50">{stat.value}</span>
+            </Reveal>
           ))}
         </div>
       </div>
 
       {/* About Section */}
       <Section id="about">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold mb-6">{t("about.title")}</h2>
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <Reveal x={-20}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-white/5 text-slate-400 text-[10px] font-mono uppercase tracking-widest mb-6">
+              <Command size={12} />
+              <span>{t("about.label") || "Profile_Info"}</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 leading-tight">{t("about.title")}</h2>
             <p className="text-slate-400 text-lg leading-relaxed mb-6">
               {t("about.p1")}
             </p>
-            <p className="text-slate-400 text-lg leading-relaxed mb-8">
+            <p className="text-slate-400 text-lg leading-relaxed mb-10">
               {t("about.p2")}
             </p>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-                <h4 className="font-semibold mb-1">{t("about.methodologies")}</h4>
-                <p className="text-sm text-slate-500">Agile, Scrum, SRE, DevOps</p>
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div className="p-5 rounded-2xl bg-slate-900/40 border border-white/5 group hover:border-indigo-500/30 transition-colors">
+                <h4 className="font-display font-bold text-slate-50 mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                  {t("about.methodologies")}
+                </h4>
+                <p className="text-sm text-slate-500 leading-relaxed font-medium">Agile, Scrum, SRE, DevOps</p>
               </div>
-              <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-                <h4 className="font-semibold mb-1">{t("about.languages")}</h4>
-                <p className="text-sm text-slate-500">{t("about.languages_list")}</p>
+              <div className="p-5 rounded-2xl bg-slate-900/40 border border-white/5 group hover:border-indigo-500/30 transition-colors">
+                <h4 className="font-display font-bold text-slate-50 mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                  {t("about.languages")}
+                </h4>
+                <p className="text-sm text-slate-500 leading-relaxed font-medium">{t("about.languages_list")}</p>
               </div>
             </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="aspect-square rounded-3xl overflow-hidden glass-panel p-2">
+          </Reveal>
+          
+          <Reveal scale={0.95} className="relative">
+            <div className="aspect-square rounded-[2rem] overflow-hidden glass-panel p-3 group">
+              <div className="absolute inset-0 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none" />
               {avatarUrl ? (
                 <img 
                   src={avatarUrl} 
                   alt="Jesús David Posada Escobar" 
-                  className="w-full h-full rounded-2xl object-cover"
+                  className="w-full h-full rounded-[1.5rem] object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
               ) : (
-                <div className="w-full h-full rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center">
+                <div className="w-full h-full rounded-[1.5rem] bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center">
                   <Layers size={120} className="text-white/20 absolute" />
                   <Terminal size={80} className="text-white" />
                 </div>
               )}
             </div>
-            {/* Decorative dots */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 grid grid-cols-4 gap-2 opacity-20">
+            {/* Abstract visual decor */}
+            <div className="absolute -top-6 -right-6 w-32 h-32 bg-indigo-500/20 rounded-full blur-3xl -z-10" />
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 grid grid-cols-4 gap-2 opacity-30">
               {Array.from({ length: 16 }).map((_, i) => (
                 <div key={i} className="w-1.5 h-1.5 bg-indigo-400 rounded-full" />
               ))}
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </Section>
 
       {/* Skills Section */}
-      <Section id="skills" className="bg-slate-950/50">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">{t("skills.title")}</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
-            {t("skills.subtitle")}
-          </p>
+      <Section id="skills" className="bg-slate-950/30 relative">
+        <div className="text-center mb-20">
+          <Reveal>
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">{t("skills.title")}</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+              {t("skills.subtitle")}
+            </p>
+          </Reveal>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {techStack.map((item, i) => (
-            <SkillCard key={i} {...item} />
+            <Reveal key={i} delay={i * 0.05}>
+              <SkillCard {...item} />
+            </Reveal>
           ))}
         </div>
       </Section>
 
       {/* Experience Section */}
       <Section id="experience">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">{t("experience.title")}</h2>
-          <div className="space-y-12">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-20">
+            <Reveal>
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">{t("experience.title")}</h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-transparent mx-auto rounded-full" />
+            </Reveal>
+          </div>
+          
+          <div className="space-y-16">
             {experiences.map((exp, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="relative pl-8 border-l border-slate-800"
-              >
-                <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]" />
-                <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="text-xl font-bold text-slate-50">{exp.role}</h3>
-                  <span className="text-sm font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">{exp.period}</span>
+              <Reveal key={i} x={-20} delay={i * 0.1} className="relative pl-10 border-l-2 border-slate-900 group">
+                <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-slate-950 border-2 border-indigo-500 group-hover:bg-indigo-500 transition-colors shadow-[0_0_15px_rgba(99,102,241,0.5)]" />
+                
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-4">
+                  <h3 className="text-2xl font-display font-bold text-slate-50 group-hover:text-indigo-400 transition-colors">{exp.role}</h3>
+                  <Badge variant="indigo" className="px-4 py-1.5">{exp.period}</Badge>
                 </div>
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <div className="text-indigo-300 font-medium">{exp.company}</div>
-                  <div className="text-xs font-mono text-slate-500 italic">{exp.time_range}</div>
+                
+                <div className="flex items-center justify-between gap-2 mb-6">
+                  <div className="text-indigo-300/80 font-bold text-lg tracking-tight uppercase">{exp.company}</div>
+                  <div className="text-xs font-mono text-slate-500 uppercase tracking-widest bg-white/5 px-2 py-1 rounded">{exp.time_range}</div>
                 </div>
-                <p className="text-slate-400 mb-6 leading-relaxed">
+                
+                <p className="text-slate-400 text-lg mb-8 leading-relaxed max-w-3xl">
                   {exp.description}
                 </p>
+                
                 <div className="flex flex-wrap gap-2">
                   {exp.tags.map(tag => (
-                    <Badge key={tag} className="bg-slate-900 border-slate-800">{tag}</Badge>
+                    <Badge key={tag} variant="slate" className="bg-slate-900/60 border-white/5 py-1.5 px-4 group-hover:border-indigo-500/20 transition-colors">{tag}</Badge>
                   ))}
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>
       </Section>
 
       {/* Blog Section */}
-      <Section id="blog" className="bg-slate-950/50">
+      <Section id="blog" className="bg-slate-950/30">
         <Blog />
       </Section>
 
       {/* Contact Section */}
-      <Section id="contact" className="mb-20">
-        <div className="glass-panel rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500" />
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t("contact.title")}</h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
-            {t("contact.description")}
-          </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <a 
-              href="mailto:posesco@gmail.com" 
-              className="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group"
-            >
-              <Mail className="text-indigo-400 group-hover:scale-110 transition-transform" />
-              <span>{t("contact.email")}</span>
-            </a>
-            <a 
-              href="https://github.com/posesco" 
-              target="_blank" 
-              rel="noreferrer"
-              className="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group"
-            >
-              <Github className="text-indigo-400 group-hover:scale-110 transition-transform" />
-              <span>{t("contact.github")}</span>
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/posesco/" 
-              target="_blank" 
-              rel="noreferrer"
-              className="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group"
-            >
-              <Linkedin className="text-indigo-400 group-hover:scale-110 transition-transform" />
-              <span>{t("contact.linkedin")}</span>
-            </a>
+      <Section id="contact" className="mb-24">
+        <Reveal>
+          <div className="glass-panel rounded-[2.5rem] p-10 md:p-20 text-center relative overflow-hidden group">
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 opacity-80" />
+            
+            <h2 className="text-4xl md:text-6xl font-display font-extrabold mb-8 tracking-tighter">{t("contact.title")}</h2>
+            <p className="text-slate-400 text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+              {t("contact.description")}
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-6 relative z-10">
+              {[
+                { icon: Mail, label: t("contact.email"), href: "mailto:posesco@gmail.com" },
+                { icon: Github, label: t("contact.github"), href: "https://github.com/posesco" },
+                { icon: Linkedin, label: t("contact.linkedin"), href: "https://www.linkedin.com/in/posesco/" }
+              ].map((item, i) => (
+                <motion.a 
+                  key={i}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  href={item.href} 
+                  target={item.href.startsWith('mailto') ? undefined : "_blank"}
+                  rel="noreferrer"
+                  className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-slate-950/50 border border-white/5 hover:border-indigo-500/40 hover:bg-slate-900 transition-all group/item"
+                >
+                  <item.icon size={20} className="text-indigo-400 group-hover/item:scale-110 transition-transform" />
+                  <span className="font-bold tracking-tight">{item.label}</span>
+                </motion.a>
+              ))}
+            </div>
+
+            {/* Background flair */}
+            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none group-hover:bg-indigo-600/20 transition-colors" />
           </div>
-        </div>
+        </Reveal>
       </Section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-slate-900">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-slate-500 text-sm">
-            © {new Date().getFullYear()} Jesús David Posada Escobar. {t("footer.built_with")}
+      <footer className="py-16 border-t border-white/5 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <div className="font-display font-bold text-xl tracking-tight text-slate-200">
+              jesusposada<span className="text-indigo-500">.</span>website
+            </div>
+            <div className="text-slate-500 text-sm font-medium">
+              © {new Date().getFullYear()} Jesús David Posada Escobar.
+            </div>
           </div>
-          <div className="flex items-center gap-6 text-slate-500 text-sm">
-            <a href="https://github.com/posesco/posesco" target="_blank" rel="noreferrer" className="hover:text-indigo-400 flex items-center gap-1">
+          
+          <div className="flex items-center gap-8 text-slate-500 text-sm font-semibold">
+            <a href="#about" className="hover:text-indigo-400 transition-colors uppercase tracking-widest text-[10px]">{t("nav.about")}</a>
+            <a href="#contact" className="hover:text-indigo-400 transition-colors uppercase tracking-widest text-[10px]">{t("nav.contact")}</a>
+            <a href="https://github.com/posesco/posesco" target="_blank" rel="noreferrer" className="hover:text-indigo-400 flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5 transition-all">
               {t("footer.source_code")} <ExternalLink size={14} />
             </a>
           </div>

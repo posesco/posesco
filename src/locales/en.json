@@ -7,6 +7,7 @@
     "contact": "Contact"
   },
   "hero": {
+    "status": "chmod +x my-career.sh",
     "title": "Jesús David",
     "subtitle": "Posada Escobar",
     "description": "DevOps Engineer & SRE Specialist focused on building resilient, automated, and observable cloud infrastructures.",
@@ -24,6 +25,7 @@
     "uptime_value": "99.9%"
   },
   "about": {
+    "label": "Profile_Info",
     "title": "About Me",
     "p1": "I am a passionate DevOps Engineer and SRE with a deep focus on observability and automation. My mission is to bridge the gap between development and operations by implementing robust CI/CD pipelines and scalable infrastructure.",
     "p2": "With expertise in cloud-native technologies and a strong background in Linux systems, I help organizations achieve high availability and operational excellence through modern SRE practices.",
@@ -36,7 +38,7 @@
     "subtitle": "A comprehensive set of tools and technologies I use to build and maintain modern infrastructure."
   },
   "experience": {
-    "title": "Experience",
+    "title": "Professional Path",
     "present": "Present",
     "previous": "Previous",
     "roles": {
