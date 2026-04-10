@@ -1,8 +1,8 @@
 ---
-title: "Laravel 13 & Docker: El Entorno de Desarrollo Definitivo"
+title: Desarrolla con Laravel 13 y Docker
 date: 04/12/2026
 draft: false
-tags: laravel, docker, php, devops]
+tags: laravel, docker, php, devops
 read_time: 5 min
 ---
 
@@ -57,5 +57,3 @@ Tener un entorno de desarrollo que sea un reflejo fiel de producción (pero opti
 
 Puedes encontrar todo el código fuente y contribuir en:
 [https://github.com/posesco/BaseLaravel](https://github.com/posesco/BaseLaravel)
-
-¡Feliz coding!
