@@ -7,7 +7,7 @@
     "contact": "Contacto"
   },
   "hero": {
-    "status": "chmod +x mi-carrera.sh",
+    "status": "grant read TO them ON mi_carrera.sh",
     "title": "Jesús David",
     "subtitle": "Posada Escobar",
     "description": "Ingeniero DevOps y Especialista SRE enfocado en construir infraestructuras cloud resilientes, automatizadas y observables.",
