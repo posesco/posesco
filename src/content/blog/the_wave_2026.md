@@ -1,5 +1,5 @@
 ---
-title: "The Wave 2026: Zaragoza’s European Technology Summit"
+title: The Wave 2026, Zaragoza’s European Technology Summit
 date: 04/13/2026
 draft: false
 tags: thewave, technology, zaragoza, networking, datacenter
