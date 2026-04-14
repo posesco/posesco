@@ -63,7 +63,8 @@
     "subtitle": "Compartiendo mis pensamientos sobre DevOps, SRE y tecnologías cloud.",
     "read_more": "Leer artículo",
     "back": "Volver al blog",
-    "view_others": "Ver otros posts"
+    "view_others": "Ver otros posts",
+    "share": "Compartir"
   },
   "contact": {
     "title": "Construyamos algo estable",

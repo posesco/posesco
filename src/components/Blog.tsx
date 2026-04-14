@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, Calendar, Clock, BookOpen, ChevronRight } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, BookOpen, ChevronRight, Linkedin, Twitter, Mail, Link, Check } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -59,6 +59,74 @@ const parseMarkdown = (id: string, rawContent: string, lang: string): Post | nul
   const readTime = metadata.read_time || (lang === 'es' ? "5 min de lectura" : "5 min read");
 
   return { id, title, date, excerpt, content, tags, readTime, draft };
+};
+
+const ShareButtons = ({ title, id }: { title: string; id: string }) => {
+  const { t } = useLanguage();
+  const [copied, setCopied] = useState(false);
+  
+  // In a real app, this would be the actual production URL
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : "";
+
+  const shareLinks = [
+    {
+      name: "LinkedIn",
+      icon: <Linkedin size={18} />,
+      url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+      color: "hover:text-[#0077b5] hover:bg-[#0077b5]/10"
+    },
+    {
+      name: "X",
+      icon: <Twitter size={18} />,
+      url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`,
+      color: "hover:text-white hover:bg-white/10"
+    },
+    {
+      name: "Email",
+      icon: <Mail size={18} />,
+      url: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareUrl)}`,
+      color: "hover:text-indigo-400 hover:bg-indigo-400/10"
+    }
+  ];
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shareUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="flex flex-col gap-4 py-8 border-t border-white/5 mt-12">
+      <div className="text-xs font-mono text-slate-500 uppercase tracking-widest">{t("blog.share")}</div>
+      <div className="flex items-center gap-3">
+        {shareLinks.map((link) => (
+          <a
+            key={link.name}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              "p-3 rounded-xl bg-slate-900 border border-white/5 transition-all text-slate-400",
+              link.color
+            )}
+            title={link.name}
+          >
+            {link.icon}
+          </a>
+        ))}
+        <button
+          onClick={copyToClipboard}
+          className={cn(
+            "p-3 rounded-xl bg-slate-900 border border-white/5 transition-all text-slate-400",
+            copied ? "text-green-400 bg-green-400/10 border-green-400/20" : "hover:text-indigo-400 hover:bg-indigo-400/10"
+          )}
+          title="Copy Link"
+        >
+          {copied ? <Check size={18} /> : <Link size={18} />}
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export const Blog = () => {
@@ -197,6 +265,8 @@ export const Blog = () => {
                   {selectedPost.content}
                 </ReactMarkdown>
               </div>
+
+              <ShareButtons title={selectedPost.title} id={selectedPost.id} />
 
               <div className="mt-20 pt-12 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-8">
                 <div className="flex items-center gap-5">
