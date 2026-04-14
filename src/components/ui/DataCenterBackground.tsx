@@ -8,25 +8,30 @@ export const DataCenterBackground = () => {
         viewBox="0 0 1000 600"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full opacity-[0.15]"
+        className="w-full h-full opacity-[0.25]"
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
           <linearGradient id="corridor-gradient" x1="500" y1="0" x2="500" y2="600" gradientUnits="userSpaceOnUse">
             <stop offset="0" stopColor="transparent" />
-            <stop offset="0.5" stopColor="#6366f1" stopOpacity="0.1" />
+            <stop offset="0.5" stopColor="#6366f1" stopOpacity="0.15" />
             <stop offset="1" stopColor="transparent" />
           </linearGradient>
           
-          <radialGradient id="vanishing-point-gradient" cx="500" cy="300" r="400" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#6366f1" stopOpacity="0.2" />
+          <radialGradient id="vanishing-point-gradient" cx="500" cy="300" r="300" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stopColor="#818cf8" stopOpacity="0.4" />
+            <stop offset="0.4" stopColor="#6366f1" stopOpacity="0.2" />
             <stop offset="1" stopColor="transparent" />
           </radialGradient>
+
+          <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="30" result="blur" />
+          </filter>
 
           <mask id="fade-mask">
             <radialGradient id="mask-gradient" cx="500" cy="300" r="500" gradientUnits="userSpaceOnUse">
               <stop offset="0" stopColor="white" />
-              <stop offset="0.7" stopColor="white" stopOpacity="0.3" />
+              <stop offset="0.7" stopColor="white" stopOpacity="0.4" />
               <stop offset="1" stopColor="transparent" />
             </radialGradient>
             <rect width="1000" height="600" fill="url(#mask-gradient)" />
@@ -45,7 +50,7 @@ export const DataCenterBackground = () => {
                   x1="500" y1="300"
                   x2={x2} y2="600"
                   stroke="#6366f1"
-                  strokeOpacity="0.1"
+                  strokeOpacity="0.15"
                   strokeWidth="1"
                 />
                 {/* Ceiling */}
@@ -53,7 +58,7 @@ export const DataCenterBackground = () => {
                   x1="500" y1="300"
                   x2={x2} y2="0"
                   stroke="#6366f1"
-                  strokeOpacity="0.1"
+                  strokeOpacity="0.15"
                   strokeWidth="1"
                 />
               </React.Fragment>
@@ -70,17 +75,17 @@ export const DataCenterBackground = () => {
             const y = 300 - height / 2;
 
             return (
-              <g key={`rack-l-${i}`} opacity={0.3 + (progress * 0.7)}>
+              <g key={`rack-l-${i}`} opacity={0.4 + (progress * 0.6)}>
                 <rect
                   x={x}
                   y={y}
                   width={width}
                   height={height}
                   stroke="#6366f1"
-                  strokeOpacity="0.2"
+                  strokeOpacity="0.25"
                   strokeWidth={0.5 + progress}
                   fill="#0f172a"
-                  fillOpacity="0.4"
+                  fillOpacity="0.5"
                 />
                 {/* Rack LEDs/Details */}
                 {[...Array(4)].map((_, j) => (
@@ -115,17 +120,17 @@ export const DataCenterBackground = () => {
             const y = 300 - height / 2;
 
             return (
-              <g key={`rack-r-${i}`} opacity={0.3 + (progress * 0.7)}>
+              <g key={`rack-r-${i}`} opacity={0.4 + (progress * 0.6)}>
                 <rect
                   x={x}
                   y={y}
                   width={width}
                   height={height}
                   stroke="#6366f1"
-                  strokeOpacity="0.2"
+                  strokeOpacity="0.25"
                   strokeWidth={0.5 + progress}
                   fill="#0f172a"
-                  fillOpacity="0.4"
+                  fillOpacity="0.5"
                 />
                 {/* Rack LEDs/Details */}
                 {[...Array(4)].map((_, j) => (
@@ -177,7 +182,13 @@ export const DataCenterBackground = () => {
         </g>
         
         {/* Central Glow */}
-        <circle cx="500" cy="300" r="100" fill="url(#vanishing-point-gradient)" />
+        <circle 
+          cx="500" 
+          cy="300" 
+          r="250" 
+          fill="url(#vanishing-point-gradient)" 
+          filter="url(#glow-filter)"
+        />
       </svg>
       
       {/* Dark vignette */}
