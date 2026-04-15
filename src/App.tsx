@@ -96,6 +96,22 @@ export default function App() {
       time_range: t("experience.roles.wiedii_sysadmin.time_range"),
       description: t("experience.roles.wiedii_sysadmin.description"),
       tags: t("experience.roles.wiedii_sysadmin.tech_stack")
+    },
+    {
+      role: t("experience.roles.emsitel_sysadmin.title"),
+      company: t("experience.roles.emsitel_sysadmin.company"),
+      period: t("experience.previous"),
+      time_range: t("experience.roles.emsitel_sysadmin.time_range"),
+      description: t("experience.roles.emsitel_sysadmin.description"),
+      tags: t("experience.roles.emsitel_sysadmin.tech_stack")
+    },
+    {
+      role: t("experience.roles.applus_revisor.title"), 
+      company: t("experience.roles.applus_revisor.company"),
+      period: t("experience.previous"),
+      time_range: t("experience.roles.applus_revisor.time_range"),
+      description: t("experience.roles.applus_revisor.description"),
+      tags: t("experience.roles.applus_revisor.tech_stack")
     }
   ], [t]);
 

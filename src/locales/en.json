@@ -53,9 +53,23 @@
         "title": "Security & Infrastructure Architect",
         "company": "WIEDII SAS",
         "time_range": "2020 - 2023",
-        "description": "Implemented CI/CD pipelines and automated infrastructure provisioning, reducing deployment times by 40%.",
+        "description": "I ensured high availability of critical environments by deploying monitoring stacks (Prometheus/Grafana/ELK) and creating automation scripts for proactive incident management and post-mortem reporting.",
         "tech_stack": ["Jenkins", "Ansible", "Python"]
-      }
+      },
+      "emsitel_sysadmin": {
+        "title": "SysAdmin Technician",
+        "company": "EMSITEL",
+        "time_range": "2018 - 2020",
+        "description": "Specialist in technological infrastructure with experience in multiplatform server administration and private cloud deployment.",
+        "tech_stack": ["Ovirt", "Voip", "Linux", "Windows Server"]
+       },
+       "applus_revisor": {
+        "title": "HFC Infrastructure Technical Reviewer",
+        "company": "Applus+ Latin America",
+        "time_range": "2016 - 2018",
+        "description": "Coordinated the reception and auditing of HFC infrastructure, managing the administrative cycle of network projects and leading technical training for staff to ensure operational efficiency.",
+        "tech_stack": ["MS Office", "Project Management", "Technical Auditing"]
+       }
     }
   },
   "blog": {

@@ -47,14 +47,28 @@
         "company": "ING Bank",
         "time_range": "2023 - Presente",
         "description": "Especializado en observabilidad, automatización e infraestructura como código para asegurar la alta disponibilidad y escalabilidad de sistemas críticos.",
-        "tech_stack": ["Kubernetes", "Terraform", "Prometheus", "AWS"]
+        "tech_stack": ["Kubernetes", "Terraform", "Prometheus", "AWS", "Azure", "Ansible"]
       },
       "wiedii_sysadmin": {
         "title": "Arquitecto de Seguridad e Infraestructura",
         "company": "WIEDII SAS",
         "time_range": "2020 - 2023",
-        "description": "Implementé pipelines de CI/CD y automaticé el aprovisionamiento de infraestructura, reduciendo los tiempos de despliegue en un 40%.",
-        "tech_stack": ["Jenkins", "Ansible", "Python"]
+        "description": "Garanticé la alta disponibilidad de entornos críticos mediante el despliegue de stacks de monitoreo (Prometheus/Grafana/ELK) y la creación de scripts de automatización para la gestión proactiva de incidentes y reportes post-mortem.",
+        "tech_stack": ["Jenkins", "Ansible", "Python", "GitLab CI", "Docker", "Terraform", "AWS"]
+      },
+      "emsitel_sysadmin": {
+        "title": "Tecnico SysAdmin",
+        "company": "EMSITEL",
+        "time_range": "2018 - 2020",
+        "description": "Especialista en infraestructura tecnológica con experiencia en administración de servidores multiplataforma y despliegue de nubes privadas",
+        "tech_stack": ["Ovirt", "Voip", "Linux", "Windows Server"]
+      },
+      "applus_revisor": {
+        "title": "Revisor Técnico de Infraestructura HFC",
+        "company": "Applus+ América Latina",
+        "time_range": "2016 - 2018",
+        "description": "Coordiné la recepción y auditoría de infraestructura HFC, gestionando el ciclo administrativo de proyectos de red y liderando la capacitación técnica del personal para garantizar la eficiencia operativa.",
+        "tech_stack": ["MS Office", "Gestión de Proyectos", "Auditoría Técnica"]
       }
     }
   },
