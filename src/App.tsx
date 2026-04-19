@@ -65,7 +65,7 @@ const Typewriter = ({ text, delay = 0.8 }: { text: string; delay?: number }) => 
 
 export default function App() {
   const { t, language, setLanguage } = useLanguage();
-  const avatarUrl = "/avatar.png";
+  const avatarUrl = "/avatar.jpg";
   const experienceRef = useRef<HTMLDivElement>(null);
 
   // Scroll progress for experience timeline
