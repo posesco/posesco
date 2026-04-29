@@ -162,12 +162,36 @@ export const Blog = () => {
       const allPosts = await Promise.all(postPromises);
       const filteredPosts = allPosts.filter((post): post is Post => post !== null);
       
-      setPosts(filteredPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
+      const sortedPosts = filteredPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setPosts(sortedPosts);
+
+      // Handle query parameter for deep linking / SEO
+      const params = new URLSearchParams(window.location.search);
+      const postId = params.get("post");
+      if (postId) {
+        const post = sortedPosts.find(p => p.id === postId);
+        if (post) setSelectedPost(post);
+      }
+
       setLoading(false);
     };
 
     loadPosts();
   }, [language]);
+
+  useEffect(() => {
+    if (selectedPost) {
+      document.title = `${selectedPost.title} | Jesús David Posada Escobar Blog`;
+      const url = new URL(window.location.href);
+      url.searchParams.set("post", selectedPost.id);
+      window.history.pushState({}, "", url);
+    } else {
+      document.title = `Blog | Jesús David Posada Escobar | DevOps, SRE & Cloud Native`;
+      const url = new URL(window.location.href);
+      url.searchParams.delete("post");
+      window.history.pushState({}, "", url);
+    }
+  }, [selectedPost]);
 
   if (loading) {
     return (
