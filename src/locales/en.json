@@ -89,6 +89,7 @@
   },
   "footer": {
     "built_with": "Built with React & Tailwind.",
-    "source_code": "Source Code"
+    "source_code": "Source Code",
+    "language": "Language"
   }
 }
