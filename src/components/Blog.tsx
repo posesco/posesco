@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Calendar, Clock, BookOpen, ChevronRight, Linkedin, Twitter, Mail, Link, Check } from "lucide-react";
 import { cn } from "../lib/utils";
@@ -9,6 +7,11 @@ import { useLanguage } from "../i18n/LanguageContext";
 // UI Components
 import { Badge } from "./ui/Badge";
 import { Reveal } from "./ui/Reveal";
+
+import remarkGfm from "remark-gfm";
+
+// Lazy load heavy markdown components
+const ReactMarkdown = lazy(() => import("react-markdown"));
 
 interface Post {
   id: string;
@@ -44,7 +47,15 @@ const parseMarkdown = (id: string, rawContent: string, lang: string): Post | nul
 
   const title = metadata.title || id.replace(/-/g, " ");
   
-  const dateObj = metadata.date ? new Date(metadata.date) : new Date();
+  // Parse DD/MM/YYYY or YYYY-MM-DD
+  let dateObj: Date;
+  if (metadata.date && metadata.date.includes("/")) {
+    const [day, month, year] = metadata.date.split("/").map(Number);
+    dateObj = new Date(year, month - 1, day);
+  } else {
+    dateObj = metadata.date ? new Date(metadata.date) : new Date();
+  }
+
   const date = dateObj.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { 
     year: 'numeric', 
     month: 'long', 
@@ -65,8 +76,10 @@ const ShareButtons = ({ title, id }: { title: string; id: string }) => {
   const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   
-  // In a real app, this would be the actual production URL
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : "";
+  // Preparar para MPA: usar URL absoluta del post si existe slug
+  const shareUrl = typeof window !== 'undefined' 
+    ? `${window.location.origin}${window.location.pathname}?post=${id}` 
+    : "";
 
   const shareLinks = [
     {
@@ -261,9 +274,11 @@ export const Blog = () => {
               </h1>
               
               <div className="markdown-body text-lg leading-[1.8]">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {selectedPost.content}
-                </ReactMarkdown>
+                <Suspense fallback={<div className="h-40 w-full animate-pulse bg-white/5 rounded-2xl" />}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {selectedPost.content}
+                  </ReactMarkdown>
+                </Suspense>
               </div>
 
               <ShareButtons title={selectedPost.title} id={selectedPost.id} />

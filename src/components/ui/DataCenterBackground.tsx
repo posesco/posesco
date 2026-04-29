@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { motion } from "motion/react";
 
-export const DataCenterBackground = () => {
+export const DataCenterBackground = memo(() => {
   return (
     <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
       <svg
@@ -195,4 +195,6 @@ export const DataCenterBackground = () => {
       <div className="absolute inset-0 bg-radial-[at_50%_50%] from-transparent via-slate-950/20 to-slate-950/80" />
     </div>
   );
-};
+});
+
+DataCenterBackground.displayName = "DataCenterBackground";

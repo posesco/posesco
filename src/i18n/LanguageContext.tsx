@@ -42,7 +42,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
       if (result && result[key] !== undefined) {
         result = result[key];
       } else {
-        return path; // Fallback a la key si no existe
+        return undefined; // Permitir fallback externo
       }
     }
     
