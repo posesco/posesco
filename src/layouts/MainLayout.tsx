@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { motion } from "motion/react";
 import { 
   Github, 
@@ -7,22 +7,15 @@ import {
   Rss,
   CloudUpload
 } from "lucide-react";
-import { cn } from "./lib/utils";
-import { Blog } from "./components/Blog";
-import { useLanguage } from "./i18n/LanguageContext";
+import { cn } from "../lib/utils";
+import { useLanguage, LanguageProvider } from "../i18n/LanguageContext";
+import { Magnetic } from "../components/ui/Magnetic";
 
-// UI Components
-import { Magnetic } from "./components/ui/Magnetic";
+interface MainLayoutProps {
+  children: ReactNode;
+}
 
-// Sections
-import { Hero } from "./components/sections/Hero";
-import { Stats } from "./components/sections/Stats";
-import { About } from "./components/sections/About";
-import { Skills } from "./components/sections/Skills";
-import { Experience } from "./components/sections/Experience";
-import { Contact } from "./components/sections/Contact";
-
-export default function App() {
+const LayoutContent = ({ children }: MainLayoutProps) => {
   const { t, language, setLanguage } = useLanguage();
 
   return (
@@ -30,7 +23,7 @@ export default function App() {
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 glass-panel !border-x-0 !border-t-0 !rounded-none backdrop-blur-2xl">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2 group cursor-pointer">
+          <a href="/" className="flex items-center gap-2 group cursor-pointer">
             <div className="relative flex items-center gap-2 font-display font-bold text-xl tracking-tight">
               <span className="text-indigo-500 transition-transform group-hover:-translate-x-0.5">[</span>
               <span className="relative">
@@ -48,7 +41,7 @@ export default function App() {
             {["about", "skills", "experience", "blog", "contact"].map((item) => (
               <a 
                 key={item}
-                href={`#${item}`} 
+                href={`/${item}/`} 
                 className="hover:text-slate-50 hover:bg-white/5 px-4 py-1.5 rounded-full transition-all flex items-center gap-1.5 group relative"
               >
                 {item === 'blog' ? <Rss size={14} className="group-hover:rotate-12 transition-transform" /> : null}
@@ -91,17 +84,9 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Main Content Sections */}
+      {/* Main Content */}
       <main>
-        <Hero />
-        <Stats />
-        <About />
-        <Skills />
-        <Experience />
-        <div id="blog" className="bg-slate-950/30 py-24 px-6 max-w-7xl mx-auto">
-          <Blog />
-        </div>
-        <Contact />
+        {children}
       </main>
 
       {/* Footer */}
@@ -117,8 +102,8 @@ export default function App() {
           </div>
           
           <div className="flex items-center gap-8 text-slate-500 text-sm font-semibold">
-            <a href="#about" className="hover:text-indigo-400 transition-colors uppercase tracking-widest text-[10px]">{t("nav.about")}</a>
-            <a href="#contact" className="hover:text-indigo-400 transition-colors uppercase tracking-widest text-[10px]">{t("nav.contact")}</a>
+            <a href="/about/" className="hover:text-indigo-400 transition-colors uppercase tracking-widest text-[10px]">{t("nav.about")}</a>
+            <a href="/contact/" className="hover:text-indigo-400 transition-colors uppercase tracking-widest text-[10px]">{t("nav.contact")}</a>
             <Magnetic strength={0.2}>
               <motion.a 
                 whileHover={{ scale: 1.05 }}
@@ -136,4 +121,12 @@ export default function App() {
       </footer>
     </div>
   );
-}
+};
+
+export const MainLayout = ({ children }: MainLayoutProps) => {
+  return (
+    <LanguageProvider>
+      <LayoutContent>{children}</LayoutContent>
+    </LanguageProvider>
+  );
+};
