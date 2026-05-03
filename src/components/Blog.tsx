@@ -7,6 +7,7 @@ import { useLanguage } from "../i18n/LanguageContext";
 // UI Components
 import { Badge } from "./ui/Badge";
 import { Reveal } from "./ui/Reveal";
+import { Skeleton } from "./ui/Skeleton";
 
 import remarkGfm from "remark-gfm";
 
@@ -24,52 +25,65 @@ interface Post {
   draft: boolean;
 }
 
-const parseMarkdown = (id: string, rawContent: string, lang: string): Post | null => {
+interface RawPost {
+  id: string;
+  title: string;
+  dateObj: Date;
+  excerpt: string;
+  content: string;
+  tags?: string;
+  readTimeKey?: string; // read_time from frontmatter
+}
+
+// Cache: parse frontmatter once, independent of language
+const rawPostCache = new Map<string, RawPost | null>();
+
+const parseRaw = (id: string, rawContent: string): RawPost | null => {
+  if (rawPostCache.has(id)) return rawPostCache.get(id)!;
+
   const frontmatterMatch = rawContent.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
-  
   let metadata: Record<string, string> = {};
   let content = rawContent;
 
   if (frontmatterMatch) {
     const yaml = frontmatterMatch[1];
     content = frontmatterMatch[2];
-    
     yaml.split("\n").forEach(line => {
       const [key, ...value] = line.split(":");
-      if (key && value.length > 0) {
-        metadata[key.trim()] = value.join(":").trim();
-      }
+      if (key && value.length > 0) metadata[key.trim()] = value.join(":").trim();
     });
   }
 
-  const draft = metadata.draft === "true";
-  if (draft) return null;
+  if (metadata.draft === "true") { rawPostCache.set(id, null); return null; }
 
   const title = metadata.title || id.replace(/-/g, " ");
-  
-  // Parse DD/MM/YYYY or YYYY-MM-DD
+
   let dateObj: Date;
-  if (metadata.date && metadata.date.includes("/")) {
+  if (metadata.date?.includes("/")) {
     const [day, month, year] = metadata.date.split("/").map(Number);
     dateObj = new Date(year, month - 1, day);
   } else {
     dateObj = metadata.date ? new Date(metadata.date) : new Date();
   }
 
-  const date = dateObj.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  });
-  
-  const contentLines = content.trim().split("\n");
-  const firstParagraph = contentLines.find(l => l.trim() && !l.startsWith("#"));
+  const firstParagraph = content.trim().split("\n").find(l => l.trim() && !l.startsWith("#"));
   const excerpt = firstParagraph ? firstParagraph.substring(0, 150) + "..." : "No description";
-  
-  const tags = metadata.tags;
-  const readTime = metadata.read_time || (lang === 'es' ? "5 min de lectura" : "5 min read");
 
-  return { id, title, date, excerpt, content, tags, readTime, draft };
+  const result: RawPost = { id, title, dateObj, excerpt, content, tags: metadata.tags, readTimeKey: metadata.read_time };
+  rawPostCache.set(id, result);
+  return result;
+};
+
+const parseMarkdown = (id: string, rawContent: string, lang: string): Post | null => {
+  const raw = parseRaw(id, rawContent);
+  if (!raw) return null;
+
+  const date = raw.dateObj.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+  const readTime = raw.readTimeKey || (lang === 'es' ? "5 min de lectura" : "5 min read");
+
+  return { id: raw.id, title: raw.title, date, excerpt: raw.excerpt, content: raw.content, tags: raw.tags, readTime, draft: false };
 };
 
 const ShareButtons = ({ title, id }: { title: string; id: string }) => {
@@ -195,8 +209,29 @@ export const Blog = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-24">
-        <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin shadow-[0_0_15px_rgba(99,102,241,0.3)]" />
+      <div className="w-full">
+        <div className="text-center mb-20">
+          <Skeleton className="h-12 w-64 mx-auto mb-6" />
+          <Skeleton className="h-5 w-96 mx-auto" />
+        </div>
+        <div className="grid md:grid-cols-2 gap-8">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="glass-panel p-8 rounded-3xl flex flex-col gap-4">
+              <div className="flex gap-3">
+                <Skeleton className="h-5 w-28" />
+                <Skeleton className="h-5 w-20" />
+              </div>
+              <Skeleton className="h-8 w-3/4" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-5/6" />
+              <Skeleton className="h-4 w-4/6" />
+              <div className="mt-auto flex justify-between">
+                <Skeleton className="h-5 w-24" />
+                <Skeleton className="h-5 w-16" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

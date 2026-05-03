@@ -63,13 +63,16 @@ export const About = () => {
                 alt="Jesús David Posada Escobar" 
                 className="w-full h-full rounded-[1.5rem] object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.display = "none";
+                  e.currentTarget.nextElementSibling?.classList.remove("hidden");
+                }}
               />
-            ) : (
-              <div className="w-full h-full rounded-[1.5rem] bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center">
-                <Layers size={120} className="text-white/20 absolute" />
-                <Terminal size={80} className="text-white" />
-              </div>
-            )}
+            ) : null}
+            <div className={`${avatarUrl ? "hidden" : ""} w-full h-full rounded-[1.5rem] bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center`}>
+              <Layers size={120} className="text-white/20 absolute" />
+              <Terminal size={80} className="text-white" />
+            </div>
           </motion.div>
           {/* Abstract visual decor */}
           <div className="absolute -top-6 -right-6 w-32 h-32 bg-indigo-500/20 rounded-full blur-3xl -z-10" />

@@ -85,7 +85,20 @@
     "description": "Siempre estoy abierto a discutir nuevos proyectos, desafíos de automatización u oportunidades SRE. ¡No dudes en contactarme!",
     "email": "Enviame un Email",
     "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "form": {
+      "name": "Nombre",
+      "name_placeholder": "Tu nombre",
+      "email": "Email",
+      "email_placeholder": "tu@email.com",
+      "message": "Mensaje",
+      "message_placeholder": "Cuéntame sobre tu proyecto u oportunidad...",
+      "submit": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado! Te responderé pronto.",
+      "send_another": "Enviar otro mensaje",
+      "error": "Algo salió mal. Por favor intenta de nuevo o escríbeme directamente."
+    }
   },
   "footer": {
     "built_with": "Construido con React & Tailwind.",

@@ -7,40 +7,27 @@ import { Reveal } from "../ui/Reveal";
 import { Magnetic } from "../ui/Magnetic";
 import { DataCenterBackground } from "../ui/DataCenterBackground";
 
-// Typewriter component for terminal effect
-const Typewriter = ({ text, delay = 0.8 }: { text: string; delay?: number }) => {
-  const letters = text.split("");
-  
-  return (
-    <motion.span key={text} className="inline-flex items-center">
-      {letters.map((char, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, display: "none" }}
-          animate={{ opacity: 1, display: "inline-block" }}
-          transition={{ 
-            duration: 0.05, 
-            delay: delay + (i * 0.04),
-            ease: "easeIn"
-          }}
-        >
-          {char === " " ? "\u00A0" : char}
-        </motion.span>
-      ))}
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 1, 0] }}
-        transition={{ 
-          duration: 0.8, 
-          repeat: Infinity, 
-          ease: "linear",
-          delay: delay + (letters.length * 0.04)
-        }}
-        className="ml-1 w-[6px] h-[14px] bg-indigo-400/80 rounded-[1px] shadow-[0_0_8px_rgba(129,140,248,0.5)]"
-      />
-    </motion.span>
-  );
-};
+// Typewriter via CSS — single element, no per-letter JS animation
+const Typewriter = ({ text, delay = 0.8 }: { text: string; delay?: number }) => (
+  <span
+    key={text}
+    className="inline-block overflow-hidden whitespace-nowrap"
+    style={{
+      width: `${text.length}ch`,
+      animation: `typewriter-reveal ${text.length * 0.04}s steps(${text.length}) forwards`,
+      animationDelay: `${delay}s`,
+      opacity: 0,
+    }}
+  >
+    {text}
+    <style>{`
+      @keyframes typewriter-reveal {
+        from { width: 0; opacity: 1; }
+        to   { width: ${text.length}ch; opacity: 1; }
+      }
+    `}</style>
+  </span>
+);
 
 export const Hero = () => {
   const { t } = useLanguage();

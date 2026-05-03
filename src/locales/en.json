@@ -85,7 +85,20 @@
     "description": "I'm always open to discussing new projects, automation challenges, or SRE opportunities. Feel free to reach out!",
     "email": "Email Me",
     "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "form": {
+      "name": "Name",
+      "name_placeholder": "Your name",
+      "email": "Email",
+      "email_placeholder": "your@email.com",
+      "message": "Message",
+      "message_placeholder": "Tell me about your project or opportunity...",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent! I'll get back to you soon.",
+      "send_another": "Send another message",
+      "error": "Something went wrong. Please try again or email me directly."
+    }
   },
   "footer": {
     "built_with": "Built with React & Tailwind.",

@@ -40,6 +40,7 @@ const LayoutContent = ({ children }: MainLayoutProps) => {
   }, [isMenuOpen]);
 
   const navItems = ["about", "skills", "experience", "blog", "contact"];
+  const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
 
   return (
     <div id="top" className="min-h-screen selection:bg-indigo-500/30 overflow-x-hidden">
@@ -65,7 +66,11 @@ const LayoutContent = ({ children }: MainLayoutProps) => {
               <a 
                 key={item}
                 href={`/${item}/`} 
-                className="hover:text-slate-50 hover:bg-white/5 px-4 py-1.5 rounded-full transition-all flex items-center gap-1.5 group relative"
+                aria-current={currentPath === `/${item}/` ? "page" : undefined}
+                className={cn(
+                  "hover:text-slate-50 hover:bg-white/5 px-4 py-1.5 rounded-full transition-all flex items-center gap-1.5 group relative",
+                  currentPath === `/${item}/` && "text-slate-50 bg-white/5"
+                )}
               >
                 {item === 'blog' ? <Rss size={14} className="group-hover:rotate-12 transition-transform" /> : null}
                 {t(`nav.${item}`)}

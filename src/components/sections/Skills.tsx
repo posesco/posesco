@@ -20,7 +20,7 @@ export const Skills = () => {
       </div>
       <Reveal staggerChildren={0.05} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {techStack.map((item, i) => (
-          <RevealItem key={i}>
+          <RevealItem key={i} className="h-full">
             <SkillCard {...item} />
           </RevealItem>
         ))}

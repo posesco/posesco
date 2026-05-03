@@ -33,7 +33,7 @@ export const SkillCard = ({ title, icon: Icon, skills, className }: SkillCardPro
       onMouseMove={handleMouseMove}
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
       className={cn(
-        "glass-panel p-6 rounded-2xl group cursor-default relative",
+        "glass-panel p-6 rounded-2xl group cursor-default relative h-full",
         className
       )}
     >
