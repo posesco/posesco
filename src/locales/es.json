@@ -16,13 +16,13 @@
   },
   "stats": {
     "experience": "Experiencia",
-    "experience_value": "5+ Años",
+    "experience_value": "6+ Años",
     "projects": "Proyectos Cloud",
     "projects_value": "20+",
     "automations": "Automatizaciones",
     "automations_value": "100+",
     "uptime": "Enfoque Uptime",
-    "uptime_value": "99.9%"
+    "uptime_value": "99.99%"
   },
   "about": {
     "label": "Informacion_Perfil",
