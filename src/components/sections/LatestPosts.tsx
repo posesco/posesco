@@ -98,7 +98,7 @@ export const LatestPosts = () => {
                 "flex flex-col md:glass-panel p-6 md:p-8 rounded-[2rem] border-b md:border border-white/5 md:h-[220px] group transition-all duration-500 relative overflow-hidden",
                 "last:border-b-0 md:last:border-b"
               )}
-              whileHover={{ x: 8, md: { x: 0, y: -8 } as any }}
+              whileHover={{ y: -8 }}
             >
               {/* Subtle background glow (desktop only) */}
               <div className="hidden md:block absolute -top-12 -right-12 w-24 h-24 bg-indigo-500/5 blur-[40px] group-hover:bg-indigo-500/10 transition-colors duration-500" />
