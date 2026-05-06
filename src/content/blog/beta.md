@@ -1,6 +1,6 @@
 ---
 title: Piensa como un SRE
-date: 05/06/2026
+date: 06/05/2026
 draft: false
 tags: sre, carrera, sistemas
 read_time: 2 min
@@ -32,7 +32,6 @@ Tu día a día laboral es un sistema en sí mismo. Como ingeniero, tu objetivo d
 
 * **Automatiza tus procesos:** Analiza tus hábitos. Si pasas tu día apagando los mismos problemas, busca la raíz del fallo y cambia tu sistema para que no vuelva a ocurrir. Crea rutinas que te permitan enfocarte en aportar valor real.
 
-***
 
 > **Fuente y Agradecimientos:** Este análisis está basado en el excelente contenido creado por BettaTech.
-> 🔗 **Video original:** [*La decisión que todo programador debe tomar*](https://www.youtube.com/watch?v=a4nQNlubPsk)
+> 🔗 **Video original:** [La decisión que todo programador debe tomar](https://www.youtube.com/watch?v=a4nQNlubPsk)

@@ -1,6 +1,6 @@
 ---
 title: Desarrolla con Laravel 13 y Docker
-date: 04/12/2026
+date: 12/04/2026
 draft: false
 tags: laravel, docker, php, devops
 read_time: 5 min
