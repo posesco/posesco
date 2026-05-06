@@ -62,7 +62,8 @@ export const About = () => {
                 src={avatarUrl} 
                 alt="Jesús David Posada Escobar" 
                 className="w-full h-full rounded-[1.5rem] object-cover transition-transform duration-700 group-hover:scale-110"
-                loading="lazy"
+                loading="eager"
+                fetchpriority="high"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).style.display = "none";
                   e.currentTarget.nextElementSibling?.classList.remove("hidden");

@@ -16,8 +16,14 @@ const translations: Record<Language, Translations> = { en, es };
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  // Detectar idioma inicial: localStorage -> navegador -> 'en'
+  // Detectar idioma inicial: URL (?lang=) -> localStorage -> navegador -> 'en'
   const [language, setLanguageState] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const langParam = params.get('lang') as Language;
+      if (langParam && (langParam === 'en' || langParam === 'es')) return langParam;
+    }
+
     const saved = localStorage.getItem('language') as Language;
     if (saved && (saved === 'en' || saved === 'es')) return saved;
     
@@ -28,6 +34,14 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     localStorage.setItem('language', language);
     document.documentElement.lang = language;
+    
+    // Update URL without refresh if needed (optional but good for consistency)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('lang') !== language) {
+      // params.set('lang', language);
+      // const newUrl = `${window.location.pathname}?${params.toString()}`;
+      // window.history.replaceState({}, '', newUrl);
+    }
   }, [language]);
 
   const setLanguage = useCallback((lang: Language) => setLanguageState(lang), []);

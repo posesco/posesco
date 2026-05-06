@@ -1,75 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jesusposada.website/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jesusposada.website/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jesusposada.website/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jesusposada.website/"/>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://jesusposada.website/about/</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://jesusposada.website/skills/</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://jesusposada.website/experience/</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://jesusposada.website/blog/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jesusposada.website/blog/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jesusposada.website/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jesusposada.website/blog/"/>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <!-- Blog Posts -->
   <url>
     <loc>https://jesusposada.website/blog/?post=elliot_watch</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jesusposada.website/blog/?post=laravel_lab</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jesusposada.website/blog/?post=obsidian</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jesusposada.website/blog/?post=open-claw</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jesusposada.website/blog/?post=primer-post</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://jesusposada.website/blog/?post=the_wave_2026</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- More pages... -->
   <url>
-    <loc>https://jesusposada.website/contact/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://jesusposada.website/about/</loc>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>

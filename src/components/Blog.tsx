@@ -194,13 +194,114 @@ export const Blog = () => {
   }, [language]);
 
   useEffect(() => {
+    const updateMeta = (name: string, content: string, attr: "name" | "property" = "name") => {
+      let el = document.querySelector(`meta[${attr}="${name}"]`);
+      if (el) el.setAttribute("content", content);
+    };
+
     if (selectedPost) {
-      document.title = `${selectedPost.title} | Jesús David Posada Escobar Blog`;
+      const fullTitle = `${selectedPost.title} | Jesús David Posada Escobar`;
+      document.title = fullTitle;
+      
+      const shareUrl = `${window.location.origin}${window.location.pathname}?post=${selectedPost.id}`;
+
+      // Basic Meta
+      updateMeta("description", selectedPost.excerpt);
+      
+      // Open Graph
+      updateMeta("og:title", fullTitle, "property");
+      updateMeta("og:description", selectedPost.excerpt, "property");
+      updateMeta("og:url", shareUrl, "property");
+      
+      // Twitter
+      updateMeta("twitter:title", fullTitle);
+      updateMeta("twitter:description", selectedPost.excerpt);
+      updateMeta("twitter:url", shareUrl);
+
+      // Canonical
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) canonical.setAttribute("href", shareUrl);
+
+      // Structured Data (JSON-LD)
+      let ldJson = document.getElementById("blog-post-jsonld");
+      if (!ldJson) {
+        ldJson = document.createElement("script");
+        ldJson.id = "blog-post-jsonld";
+        ldJson.setAttribute("type", "application/ld+json");
+        document.head.appendChild(ldJson);
+      }
+      
+      ldJson.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BlogPosting",
+            "headline": selectedPost.title,
+            "description": selectedPost.excerpt,
+            "author": {
+              "@type": "Person",
+              "name": "Jesús David Posada Escobar",
+              "url": "https://jesusposada.website/"
+            },
+            "datePublished": selectedPost.date,
+            "url": shareUrl,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": shareUrl
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": `${window.location.origin}/`
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": `${window.location.origin}/blog/`
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": selectedPost.title,
+                "item": shareUrl
+              }
+            ]
+          }
+        ]
+      });
+
       const url = new URL(window.location.href);
       url.searchParams.set("post", selectedPost.id);
       window.history.pushState({}, "", url);
     } else {
-      document.title = `Blog | Jesús David Posada Escobar | DevOps, SRE & Cloud Native`;
+      const defaultTitle = `Blog | Jesús David Posada Escobar | DevOps, SRE & Cloud Native`;
+      const defaultDesc = "Read the latest insights and articles from Jesús David Posada Escobar about DevOps, SRE, and cloud technologies.";
+      const defaultUrl = `${window.location.origin}/blog/`;
+
+      document.title = defaultTitle;
+      
+      updateMeta("description", defaultDesc);
+      updateMeta("og:title", defaultTitle, "property");
+      updateMeta("og:description", defaultDesc, "property");
+      updateMeta("og:url", defaultUrl, "property");
+      
+      updateMeta("twitter:title", defaultTitle);
+      updateMeta("twitter:description", defaultDesc);
+      updateMeta("twitter:url", defaultUrl);
+
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) canonical.setAttribute("href", defaultUrl);
+
+      // Remove structured data if not in post
+      const ldJson = document.getElementById("blog-post-jsonld");
+      if (ldJson) ldJson.remove();
+
       const url = new URL(window.location.href);
       url.searchParams.delete("post");
       window.history.pushState({}, "", url);

@@ -21,6 +21,26 @@ const LayoutContent = ({ children }: MainLayoutProps) => {
   const { t, language, setLanguage } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Update hreflang tags for SEO
+  useEffect(() => {
+    const updateHreflang = (lang: string, href: string) => {
+      let link = document.querySelector(`link[hreflang="${lang}"]`);
+      if (link) link.setAttribute("href", href);
+    };
+
+    const baseUrl = window.location.origin + window.location.pathname;
+    updateHreflang("en", `${baseUrl}?lang=en`);
+    updateHreflang("es", `${baseUrl}?lang=es`);
+    updateHreflang("x-default", `${baseUrl}?lang=en`);
+  }, [language]);
+
+  const handleLanguageChange = (lang: 'en' | 'es') => {
+    setLanguage(lang);
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", lang);
+    window.history.pushState({}, "", url);
+  };
+
   // Close menu on resize if screen becomes large
   useEffect(() => {
     const handleResize = () => {
@@ -83,7 +103,7 @@ const LayoutContent = ({ children }: MainLayoutProps) => {
               {['en', 'es'].map((lang) => (
                 <button 
                   key={lang}
-                  onClick={() => setLanguage(lang as 'en' | 'es')}
+                  onClick={() => handleLanguageChange(lang as 'en' | 'es')}
                   className={cn(
                     "px-3 py-1 text-[10px] font-bold rounded-full transition-all uppercase",
                     language === lang ? "bg-indigo-600 text-white shadow-lg" : "text-slate-500 hover:text-slate-300"
@@ -155,7 +175,10 @@ const LayoutContent = ({ children }: MainLayoutProps) => {
                 {['en', 'es'].map((lang) => (
                   <button 
                     key={lang}
-                    onClick={() => setLanguage(lang as 'en' | 'es')}
+                    onClick={() => {
+                      handleLanguageChange(lang as 'en' | 'es');
+                      setIsMenuOpen(false);
+                    }}
                     className={cn(
                       "flex-1 py-4 text-xs font-bold rounded-2xl border transition-all uppercase",
                       language === lang 
