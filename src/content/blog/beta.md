@@ -1,5 +1,5 @@
 ---
-title: Piensa como un SRE
+title: Piensa como un SRE 🧠
 date: 06/05/2026
 draft: false
 tags: sre, carrera, sistemas

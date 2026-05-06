@@ -34,6 +34,9 @@ Para el desarrollo, apliqué principios de ingeniería para mantener el sistema 
 
 Puedes revisar el código fuente completo en el repositorio: [github.com/posesco/ElliotWatch](https://github.com/posesco/ElliotWatch).
 
+![ElliotWatch](/elliotwatch.png)
+
+
 ### Conclusión
 
 Las herramientas modernas de IA y las prácticas de automatización no solo sirven para optimizar infraestructuras corporativas; también son excelentes puentes para acortar distancias afectivas. 
