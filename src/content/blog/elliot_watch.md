@@ -1,6 +1,6 @@
 ---
-title: Acortando distancias: Un reloj dual para Elliot
-date: 25/04/2026
+title: Un reloj para Elliot
+date: 04/25/2026
 draft: false
 tags: devops, javascript, familia, ai
 read_time: 3 min
