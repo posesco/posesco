@@ -73,6 +73,7 @@
     }
   },
   "blog": {
+    "label": "Diario // Ideas",
     "title": "Últimas Ideas",
     "subtitle": "Compartiendo mis pensamientos sobre DevOps, SRE y tecnologías cloud.",
     "read_more": "Leer artículo",

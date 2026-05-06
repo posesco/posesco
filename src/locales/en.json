@@ -73,6 +73,7 @@
     }
   },
   "blog": {
+    "label": "Journal // Insights",
     "title": "Latest Insights",
     "subtitle": "Sharing my thoughts on DevOps, SRE, and cloud technologies.",
     "read_more": "Read article",
