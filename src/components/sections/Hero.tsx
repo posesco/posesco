@@ -38,7 +38,7 @@ export const Hero = () => {
       
       <Section className="pt-28 md:pt-48 pb-32 flex flex-col items-center text-center overflow-visible relative z-10">
         <Reveal blur y={40}>
-          <motion.div 
+          {/* <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -46,7 +46,7 @@ export const Hero = () => {
           >
             <Terminal size={14} className="animate-pulse" />
             <Typewriter text={t("hero.status") || "grant read TO them ON my_career.sh"} />
-          </motion.div>
+          </motion.div> */}
           
           <h1 className="text-5xl md:text-8xl font-display font-extrabold mb-8 tracking-tight leading-[1.1]">
             <motion.span
@@ -100,14 +100,14 @@ export const Hero = () => {
             </Magnetic>
           </div>
         </Reveal>
-
+{/* 
         <motion.div 
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="mt-20 text-slate-500"
         >
           <ArrowDown size={20} />
-        </motion.div>
+        </motion.div> */}
       </Section>
     </div>
   );

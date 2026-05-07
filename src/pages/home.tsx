@@ -9,8 +9,8 @@ import "../index.css";
 const Home = () => (
   <MainLayout>
     <Hero />
-    <LatestPosts />
-    <Stats />
+    {/* <LatestPosts />
+    <Stats /> */}
   </MainLayout>
 );
 

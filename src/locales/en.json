@@ -34,8 +34,10 @@
     "languages_list": "Spanish, English"
   },
   "skills": {
-    "title": "Technical Stack",
-    "subtitle": "A comprehensive set of tools and technologies I use to build and maintain modern infrastructure."
+    "title": "Toolbox",
+    "subtitle": "A comprehensive set of tools and technologies I use to build and maintain modern infrastructure.",
+    "quote": "If the only tool you have is a hammer, you tend to see every problem as a nail.",
+    "quote_author": "Abraham Maslow"
   },
   "experience": {
     "title": "Professional Path",

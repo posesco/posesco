@@ -34,8 +34,10 @@
     "languages_list": "Español, Inglés"
   },
   "skills": {
-    "title": "Stack Técnico",
-    "subtitle": "Un conjunto completo de herramientas y tecnologías que utilizo para construir y mantener infraestructura moderna."
+    "title": "Caja de Herramientas",
+    "subtitle": "Un conjunto completo de herramientas y tecnologías que utilizo para construir y mantener infraestructura moderna.",
+    "quote": "Si tu única herramienta es un martillo, tiendes a tratar cada problema como si fuera un clavo.",
+    "quote_author": "Abraham Maslow"
   },
   "experience": {
     "title": "Trayectoria Profesional",
