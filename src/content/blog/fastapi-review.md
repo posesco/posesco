@@ -1,5 +1,5 @@
 ---
-title: De tutorial a proyecto real
+title: FastAPI de tutorial a proyecto real
 date: 08/05/2026
 draft: false
 tags: fastapi, python, docker, clean-architecture, observability, sre, ia
