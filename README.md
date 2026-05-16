@@ -8,75 +8,75 @@ Telecommunications Technologist with **6+ years of experience** building reliabl
 
 ## Professional Highlights
 
-- 🔍 **Observability Champion**: Transformed raw log systems into comprehensive monitoring stacks (Elastic Stack, Grafana, Prometheus)
-- 🐳 **Containerization Expert**: Migrated monolithic on-premise applications to containerized architectures
-- 🔄 **CI/CD Advocate**: Implemented GitFlow and automated pipelines, reducing deployment time and errors
-- 📊 **SRE Practitioner**: Established Post-mortem processes, SLI/SLO tracking, and backup validation routines
-- ☁️ **Cloud & Hybrid Infrastructure**: Designed and managed solutions across AWS, Azure, and on-premise environments
+- **Observability Champion**: Transformed raw log systems into comprehensive monitoring stacks (Elastic Stack, Grafana, Prometheus)
+- **Containerization Expert**: Migrated monolithic on-premise applications to containerized architectures
+- **CI/CD Advocate**: Implemented GitFlow and automated pipelines, reducing deployment time and errors
+- **SRE Practitioner**: Established Post-mortem processes, SLI/SLO tracking, and backup validation routines
+- **Cloud & Hybrid Infrastructure**: Designed and managed solutions across AWS, Azure, and on-premise environments
 
 ---
 
 ## Technical Stack
 
-### 🔭 Observability & Monitoring
+### Observability & Monitoring
 [![Skills](https://skillicons.dev/icons?i=grafana,prometheus)](https://skillicons.dev)
 - **Metrics**: Prometheus, Grafana
 - **Logging**: Elastic Stack (Elasticsearch, Kibana), Loki
 - **Tracing**: Grafana Tempo
 - **Load Testing**: k6
 
-### ⚙️ Infrastructure as Code & Configuration Management
+### Infrastructure as Code & Configuration Management
 [![Skills](https://skillicons.dev/icons?i=terraform,ansible)](https://skillicons.dev)
 - **IaC**: Terraform
 - **Configuration Management**: Ansible
 
-### 🐳 Containerization & Orchestration
+### Containerization & Orchestration
 [![Skills](https://skillicons.dev/icons?i=docker,kubernetes)](https://skillicons.dev)
 - **Containers**: Docker, Podman
 - **Orchestration**: Kubernetes, Helm
 
-### 🔄 CI/CD & Automation
+### CI/CD & Automation
 [![Skills](https://skillicons.dev/icons?i=jenkins,gitlab,github)](https://skillicons.dev)
 - **Pipelines**: Jenkins, GitLab CI/CD, Azure Pipelines, GitHub Actions
 - **Workflow Automation**: n8n
 
-### ☁️ Cloud Platforms
+### Cloud Platforms
 [![Skills](https://skillicons.dev/icons?i=aws,azure)](https://skillicons.dev)
 - **AWS** | **Azure**
 - **AWS Certified Cloud Practitioner**
 
-### 🗄️ Databases & Caching
+### Databases & Caching
 [![Skills](https://skillicons.dev/icons?i=mysql,redis)](https://skillicons.dev)
 - **SQL**: MySQL, MariaDB
 - **Caching**: Redis
 
-### 🌐 Web Servers & Load Balancers
+### Web Servers & Load Balancers
 [![Skills](https://skillicons.dev/icons?i=nginx,wordpress,linux)](https://skillicons.dev)
 - **Reverse Proxy/LB**: Nginx, HAProxy
 - **CMS**: WordPress
 
-### 💻 Programming & Scripting
+### Programming & Scripting
 [![Skills](https://skillicons.dev/icons?i=bash,python,go,javascript,php)](https://skillicons.dev)
 - **Bash** | **Python** | **Go** | **JavaScript** | **PHP** | 
 
-### 🔧 Version Control & Collaboration
+### Version Control & Collaboration
 [![Skills](https://skillicons.dev/icons?i=git,github,gitlab)](https://skillicons.dev)
 - **Git** | **GitHub** | **GitLab**
 
-### 🐧 Operating Systems
+### Operating Systems
 [![Skills](https://skillicons.dev/icons?i=linux,windows)](https://skillicons.dev)
-- **Linux** (Ubuntu, CentOS, Debian, Red Hat Enterprise Linux)
+- **Linux** (Ubuntu, CentOS, Debian, Red Hat Enterprise Linux, Arch)
 - **Windows Server**
 
 ---
 
 ## Methodologies & Best Practices
 
-### 🔄 Agile Frameworks
+### Agile Frameworks
 - **SCRUM**: Sprint planning, daily standups, retrospectives
 - **KANBAN**: Continuous flow, WIP limits, visual management
 
-### 🎯 SRE Practices
+### SRE Practices
 - **Reliability Engineering**: SLI/SLO definition and tracking, Error Budgets
 - **Incident Management**: Post-mortem analysis, RCA (Root Cause Analysis)
 - **Operational Excellence**: Backup validation, disaster recovery procedures
