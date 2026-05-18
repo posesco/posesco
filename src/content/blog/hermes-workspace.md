@@ -1,5 +1,5 @@
 ---
-title: "Hermes Workspace: Tu flota de agentes IA desplegada en AWS 🚀"
+title: Hermes Workspace: Tu flota de agentes IA desplegada en AWS
 date: 18/05/2026
 draft: false
 tags: ai, agents, aws, terraform, sre, automation
