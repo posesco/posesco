@@ -18,6 +18,7 @@ interface Post {
   id: string;
   title: string;
   date: string;
+  rawDate: Date;
   excerpt: string;
   content: string;
   tags?: string;
@@ -83,7 +84,7 @@ const parseMarkdown = (id: string, rawContent: string, lang: string): Post | nul
   });
   const readTime = raw.readTimeKey || (lang === 'es' ? "5 min de lectura" : "5 min read");
 
-  return { id: raw.id, title: raw.title, date, excerpt: raw.excerpt, content: raw.content, tags: raw.tags, readTime, draft: false };
+  return { id: raw.id, title: raw.title, date, rawDate: raw.dateObj, excerpt: raw.excerpt, content: raw.content, tags: raw.tags, readTime, draft: false };
 };
 
 const ShareButtons = ({ title, id }: { title: string; id: string }) => {
@@ -176,7 +177,7 @@ export const Blog = () => {
       const allPosts = await Promise.all(postPromises);
       const filteredPosts = allPosts.filter((post): post is Post => post !== null);
       
-      const sortedPosts = filteredPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      const sortedPosts = filteredPosts.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
       setPosts(sortedPosts);
 
       // Handle query parameter for deep linking / SEO
