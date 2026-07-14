@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { getCollection } from 'astro:content';
+
+const toTimestamp = (date: string) => {
+  const [day, month, year] = date.split('/').map(Number);
+  return Date.UTC(year, month - 1, day);
+};
+const posts = await getCollection('blog', ({ data }) => !import.meta.env.PROD || !data.draft);
+posts.sort((a, b) => toTimestamp(b.data.date) - toTimestamp(a.data.date));
+---
+<BaseLayout locale="es" title="Notas técnicas" description="Artículos de Jesús Posada sobre SRE, automatización, cloud, IA y aprendizaje técnico.">
+  <script is:inline define:vars={{ slugs: posts.map(({ id }) => id) }}>
+    const legacyPost = new URLSearchParams(location.search).get('post');
+    if (legacyPost && slugs.includes(legacyPost)) location.replace(`/blog/${legacyPost}/`);
+  </script>
+  <SiteHeader locale="es" blog />
+  <main class="notes wrap"><p class="eyebrow">ENGINEERING NOTES · ARCHIVE</p><h1>Notas técnicas y aprendizajes.</h1><p class="intro">Contenido conservado en su idioma original mientras evoluciona el nuevo cuaderno editorial.</p><div class="notes-list">{posts.map(({ id, data }, index) => <a href={`/blog/${id}/`}><span>{String(index+1).padStart(2,'0')}</span><div><h2>{data.title}</h2><p>{data.date} · {data.read_time}</p></div><i aria-hidden="true">↗</i></a>)}</div></main>
+</BaseLayout>
+<style>.notes{padding-block:100px}.notes h1{max-width:900px}.intro{max-width:650px;color:var(--muted);font-size:1.1rem}.notes-list{margin-top:80px;border-top:1px solid var(--line)}.notes-list>a{display:grid;grid-template-columns:50px 1fr auto;gap:25px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line);text-decoration:none}.notes-list>a>span,.notes-list p{font:500 10px var(--mono);color:var(--muted)}.notes-list h2{margin:0 0 6px;font:600 1.7rem var(--serif)}.notes-list p{margin:0}.notes-list a:hover h2{text-decoration:underline;text-underline-offset:5px}@media(max-width:600px){.notes{padding-block:70px}.notes-list>a{grid-template-columns:35px 1fr}.notes-list i{display:none}}</style>

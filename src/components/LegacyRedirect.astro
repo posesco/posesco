@@ -1,0 +1,16 @@
+---
+interface Props { destination: string; label: string }
+const { destination, label } = Astro.props;
+const canonical = new URL(destination, 'https://jesusposada.website');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <link rel="canonical" href={canonical} />
+    <title>{label} · Jesús Posada</title>
+  </head>
+  <body><p><a href={destination}>Continue to {label}</a></p></body>
+</html>

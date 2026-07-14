@@ -1,12 +1,11 @@
 ---
-title: ¿Por qué usar Obsidian?
-date: 05/04/2026
+slug: obsidian
+title: "¿Por qué usar Obsidian?"
+date: "05/04/2026"
 draft: false
 tags: obsidian, ai
-read_time: 3 min
+read_time: "3 min"
 ---
-# Por qué Obsidian es la herramienta definitiva en la era de la IA
-
 En un mercado saturado de aplicaciones de productividad que prometen revolucionar tu flujo de trabajo con funciones de inteligencia artificial integradas y suscripciones costosas, **Obsidian ha emergido como el estándar de oro**. No por tener la IA más brillante, sino por tener los cimientos más sólidos.
 
 ![Obsidian](https://obsidian.md/images/obsidian-logo-gradient.svg)
@@ -35,6 +34,4 @@ Obsidian no es solo una herramienta de notas; es un sistema de gestión de conoc
 ### Conclusión
 
 Si buscas un "hogar" para tu pensamiento que sea inmune a las modas tecnológicas y que aproveche la IA sin sacrificar tu privacidad, la respuesta está en la simplicidad del Markdown y la potencia de los archivos locales.
-
-
 

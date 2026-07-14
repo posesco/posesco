@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+import { site, type Locale } from '../data/site';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  alternatePath?: string;
+  ogType?: 'website' | 'article';
+  publishedTime?: string;
+  articleTags?: string[];
+  noindex?: boolean;
+  canonical?: boolean;
+}
+const {
+  locale,
+  title,
+  description,
+  alternatePath,
+  ogType = 'website',
+  publishedTime,
+  articleTags = [],
+  noindex = false,
+  canonical: showCanonical = true,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url);
+const alternateLocale = locale === 'en' ? 'es' : 'en';
+const personImage = new URL('/avatar.jpg', site.url);
+const socialImage = new URL('/social-card.png', site.url);
+const socialImageAlt = locale === 'en'
+  ? 'Jesús Posada, SRE focused on observability, automation and FinOps'
+  : 'Jesús Posada, SRE especializado en observabilidad, automatización y FinOps';
+const personId = new URL('/#person', site.url).href;
+const websiteId = new URL('/#website', site.url).href;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: site.name,
+      url: site.url,
+      image: { '@type': 'ImageObject', url: personImage.href, width: 1812, height: 1929 },
+      jobTitle: 'Site Reliability Engineer',
+      sameAs: [site.linkedin, site.github],
+      knowsAbout: ['Site Reliability Engineering', 'Observability', 'Cloud automation', 'FinOps', 'Infrastructure as Code'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: site.url,
+      name: site.shortName,
+      inLanguage: ['en', 'es'],
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical.href}#webpage`,
+      url: canonical.href,
+      name: title,
+      description,
+      inLanguage: locale,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': personId },
+    },
+  ],
+};
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#f2f0e8" />
+    <script is:inline>
+      (() => {
+        let stored;
+        try { stored = localStorage.getItem('theme'); } catch {}
+        if (stored === 'light' || stored === 'dark') document.documentElement.dataset.theme = stored;
+        const dark = stored === 'dark' || (!stored && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#111713' : '#f2f0e8');
+      })();
+    </script>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" type="application/manifest+json" href="/site.webmanifest" />
+    {showCanonical && <link rel="canonical" href={canonical} />}
+    {alternatePath && <link rel="alternate" hreflang={locale} href={canonical} />}
+    {alternatePath && <link rel="alternate" hreflang={alternateLocale} href={new URL(alternatePath, site.url)} />}
+    {alternatePath && <link rel="alternate" hreflang="x-default" href={new URL('/en/', site.url)} />}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.shortName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'es_ES'} />
+    {alternatePath && <meta property="og:locale:alternate" content={locale === 'en' ? 'es_ES' : 'en_US'} />}
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    {ogType === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {ogType === 'article' && <meta property="article:author" content={personId} />}
+    {ogType === 'article' && articleTags.map((tag) => <meta property="article:tag" content={tag} />)}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
+    <title>{title} · {site.shortName}</title>
+    <script is:inline type="application/ld+json" set:html={structuredDataJson} />
+  </head>
+  <body><slot /></body>
+</html>

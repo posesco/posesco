@@ -1,12 +1,11 @@
 ---
-title: Hermes Workspace: Tu flota de agentes IA desplegada en AWS
-date: 18/05/2026
+slug: hermes-workspace
+title: "Hermes Workspace: Tu flota de agentes IA desplegada en AWS"
+date: "18/05/2026"
 draft: false
 tags: ai, agents, aws, terraform, sre, automation
-read_time: 6 min
+read_time: "6 min"
 ---
-
-# Hermes Workspace: De chats aislados a una flota de trabajadores autónomos
 
 Como SRE, mi objetivo siempre ha sido la escalabilidad y la eliminación del trabajo manual. Durante años, he automatizado infraestructuras con Terraform y Ansible, pero hoy se presenta una nueva frontera: **la automatización cognitiva**.
 

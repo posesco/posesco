@@ -1,9 +1,10 @@
 ---
-title: Desarrolla con Laravel 13 y Docker
-date: 12/04/2026
+slug: laravel_lab
+title: "Desarrolla con Laravel 13 y Docker"
+date: "12/04/2026"
 draft: false
 tags: laravel, docker, php, devops
-read_time: 5 min
+read_time: "5 min"
 ---
 
 Montar un entorno de desarrollo para Laravel no debería ser un dolor de cabeza. Con el lanzamiento de **Laravel 13**, la necesidad de un entorno robusto, predecible y rápido es más crítica que nunca. 

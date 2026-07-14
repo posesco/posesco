@@ -404,3 +404,7 @@ coverage/
 .DS_Store
 .env*
 !.env.example
+.astro/
+
+# Local generated skill-registry state
+.atl/

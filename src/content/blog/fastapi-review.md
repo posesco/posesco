@@ -1,12 +1,11 @@
 ---
-title: FastAPI de tutorial a proyecto real
-date: 08/05/2026
+slug: fastapi-review
+title: "FastAPI de tutorial a proyecto real"
+date: "08/05/2026"
 draft: false
 tags: fastapi, python, docker, clean-architecture, observability, sre, ia
-read_time: 12 min
+read_time: "12 min"
 ---
-
-# De tutorial a proyecto real: construyendo una API con FastAPI
 
 Hay un salto que todo desarrollador conoce bien: terminas un tutorial, entiendes los conceptos básicos, y luego te quedas mirando la pantalla sin saber cómo pasar de ese "hola mundo" a algo que tenga estructura, que escale, que se pueda mantener. Este proyecto nació exactamente de ese punto.
 
