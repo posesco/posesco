@@ -18,39 +18,39 @@ Ya no se trata solo de levantar contenedores, sino de desplegar **trabajadores i
 | ![Chat](https://hermes-workspace.com/_next/image?url=%2Fscreenshots%2Fchat.png&w=1920&q=75) | ![Dashboard](https://hermes-workspace.com/_next/image?url=%2Fscreenshots%2Fdashboard.png&w=1920&q=75) |
 | ![Conductor](https://hermes-workspace.com/_next/image?url=%2Fscreenshots%2Fconductor.png&w=1920&q=75) | ![Settings](https://hermes-workspace.com/_next/image?url=%2Fscreenshots%2Fsettings.png&w=1920&q=75) |
 
-Olvídate de las interfaces de chat convencionales. Hermes Workspace es el **"Cockpit" (centro de mando)** definitivo para agentes de IA. Es un entorno de trabajo completo que integra terminales reales, editores de código y un orquestador de agentes en una sola interfaz web.
+Hermes Workspace propone un **"cockpit" (centro de mando)** para agentes de IA. Integra terminales, editores de código y orquestación de agentes en una sola interfaz web.
 
-Lo que más me gustó del proyecto (y por lo que decidí integrarlo en mi AWS Lab) es su capacidad para transformar la interacción con modelos de lenguaje en un sistema operativo real para agentes.
+Lo que más me gustó del proyecto, y por lo que decidí integrarlo en mi AWS Lab, es que permite explorar la interacción con modelos de lenguaje desde una interfaz operativa para agentes.
 
-### Características que rompen el juego:
+### Capacidades que exploré en el laboratorio
 
-*   **Modo "Conductor" (Swarm):** Imagina lanzar un agente principal que, al detectar la complejidad de una tarea, despliega sub-agentes en paralelo. Uno investiga la documentación, otro escribe el código en el editor integrado y un tercero ejecuta los tests en la terminal PTY. **Es una flota de trabajadores actuando en sincronía.**
+*   **Modo "Conductor" (Swarm):** Permite coordinar agentes para investigar documentación, editar código y ejecutar pruebas en paralelo, sujeto a la configuración y supervisión del usuario.
 *   **Inspección de Memoria en Tiempo Real:** Como ingeniero, odio las "cajas negras". Hermes me permite ver y editar lo que el agente recuerda, ajustando su contexto sobre la marcha.
-*   **Más de 2,000 Skills:** El agente no solo "habla"; "hace". Tiene acceso a un catálogo masivo de herramientas pre-construidas y puede aprender nuevas habilidades observando flujos de trabajo exitosos.
-*   **Human-in-the-loop:** A través de "Tool Cards", el sistema me pide aprobación antes de ejecutar comandos críticos. Control total, riesgo cero.
+*   **Skills:** Puede ampliar sus acciones mediante herramientas configurables y flujos reutilizables.
+*   **Human-in-the-loop:** Las "Tool Cards" añaden puntos de aprobación antes de comandos sensibles; reducen riesgo, pero no sustituyen aislamiento, mínimo privilegio ni revisión.
 
 ## El enfoque SRE: Infraestructura como Código (IaC)
 
-No sirve de nada tener la IA más avanzada si el despliegue es manual y propenso a errores. Por eso, he integrado Hermes Workspace en mi laboratorio de AWS utilizando **Terraform**.
+Un despliegue manual dificulta reproducir y revisar el entorno. Por eso, he integrado Hermes Workspace en mi laboratorio de AWS utilizando **Terraform**.
 
-He diseñado un módulo que aprovisiona una instancia **EC2 optimizada** con el stack necesario (Node 24, Python 3.11, PNPM) inyectado mediante **Cloud-init**. Esto garantiza que mi centro de mando de IA sea:
-1.  **Reproducible:** El mismo entorno siempre.
-2.  **Seguro:** Aislado en mi propia VPC, con roles de IAM específicos y sin claves expuestas.
+He diseñado un módulo de laboratorio que aprovisiona una instancia **EC2** con el stack necesario (Node 24, Python 3.11, PNPM) mediante **Cloud-init**. El objetivo es que el entorno sea:
+1.  **Reproducible:** Aprovisionado desde la misma definición de infraestructura.
+2.  **Aislado:** Ubicado en una VPC propia, con roles de IAM específicos y sin claves estáticas en el código.
 3.  **Efímero:** Lo levanto cuando necesito una flota de agentes para un proyecto y lo destruyo al terminar.
 
 ### Seguridad y Potencia: Amazon Bedrock sin API Keys
 
 Aquí es donde la arquitectura se pone realmente interesante. Mi configuración en el repositorio aprovecha **Amazon Bedrock** para dar vida a los agentes. Pero no lo hago de la forma tradicional de usar API Keys de terceros.
 
-*   **Identidad es Perímetro:** Utilizo políticas de IAM asignadas directamente al rol de la instancia EC2. Esto significa **CERO API Keys** en el código o en variables de entorno.
-*   **Acceso Multimodelo:** Con una sola configuración, mis agentes tienen acceso a los modelos más potentes del mercado (Claude 4.7 Opues, MiniMax M2.5, Llama 3.2, Mistral, etc.) de forma nativa.
-*   **Facturación Unificada:** Todo el consumo de IA se refleja directamente en mi factura de AWS. Sin suscripciones externas, sin límites de cuotas de terceros, simplificando la gestión financiera (FinOps) al máximo.
+*   **Identidad como perímetro:** Utilizo políticas de IAM asignadas al rol de la instancia EC2, evitando API keys estáticas en código o variables de entorno para el acceso a Bedrock.
+*   **Acceso multimodelo:** La disponibilidad depende de los modelos habilitados en Amazon Bedrock, la región y las cuotas de la cuenta.
+*   **Facturación centralizada:** El consumo de Bedrock queda reflejado en AWS, lo que facilita observar costes dentro del laboratorio.
 
 ## El poder de la IA Generativa y el "Harness" adecuado
 
-No puedo cerrar este post sin hacer una mención especial al motor de todo esto. La **IA Generativa**, cuando se utiliza bajo un buen **harness** (un marco de trabajo sólido y estructurado como este), hace maravillas. 
+La **IA Generativa**, cuando se utiliza bajo un buen **harness** (un marco de trabajo sólido y estructurado como este), puede ejecutar flujos más útiles y controlables.
 
-Un modelo de lenguaje por sí solo es solo texto; pero un modelo de lenguaje con acceso a una terminal, un sistema de archivos y una infraestructura robusta, se convierte en un miembro más del equipo.
+Un modelo con acceso controlado a terminal, sistema de archivos y herramientas puede ejecutar flujos útiles, pero sigue requiriendo límites, observabilidad y criterio humano.
 
 ### Mira el código y despliega tu flota
 
@@ -60,7 +60,7 @@ El código de este despliegue está libre y a disposición pública para que pue
 
 ## Conclusión
 
-Estamos pasando de la era del "Copilot" (donde la IA te sugiere cosas) a la era del **Agente Autónomo** (donde la IA ejecuta por ti). Tener esta capacidad desplegada en AWS, bajo mi propio control y gestionada como código, es el siguiente nivel para cualquier profesional de DevOps o SRE.
+Este laboratorio explora el paso de asistentes que sugieren a agentes capaces de ejecutar acciones. Es una hipótesis técnica para aprender sobre aislamiento, identidad, costes y operación; no una validación de producción.
 
 
 > **Documentación oficial:** [Hermes Workspace](https://hermes-workspace.com/).

@@ -29,8 +29,8 @@ const alternateLocale = locale === 'en' ? 'es' : 'en';
 const personImage = new URL('/avatar.jpg', site.url);
 const socialImage = new URL('/social-card.png', site.url);
 const socialImageAlt = locale === 'en'
-  ? 'Jesús Posada, SRE focused on observability, automation and FinOps'
-  : 'Jesús Posada, SRE especializado en observabilidad, automatización y FinOps';
+  ? 'Jesús Posada, Senior SRE and Platform Engineer focused on reliable, efficient systems'
+  : 'Jesús Posada, Senior SRE y Platform Engineer enfocado en sistemas fiables y eficientes';
 const personId = new URL('/#person', site.url).href;
 const websiteId = new URL('/#website', site.url).href;
 const structuredData = {
@@ -42,9 +42,9 @@ const structuredData = {
       name: site.name,
       url: site.url,
       image: { '@type': 'ImageObject', url: personImage.href, width: 1812, height: 1929 },
-      jobTitle: 'Site Reliability Engineer',
+      jobTitle: 'Senior Site Reliability Engineer and Platform Engineer',
       sameAs: [site.linkedin, site.github],
-      knowsAbout: ['Site Reliability Engineering', 'Observability', 'Cloud automation', 'FinOps', 'Infrastructure as Code'],
+      knowsAbout: ['Site Reliability Engineering', 'Platform Engineering', 'Observability', 'Cloud automation', 'FinOps', 'Infrastructure as Code', 'Disaster Recovery'],
     },
     {
       '@type': 'WebSite',
