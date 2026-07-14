@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://jesusposada.website/sitemap.xml
+Sitemap: https://jesusposada.website/sitemap-index.xml

@@ -1,12 +1,11 @@
 ---
-title: Un reloj para Elliot
-date: 25/04/2026
+slug: elliot_watch
+title: "Un reloj para Elliot"
+date: "25/04/2026"
 draft: false
 tags: devops, javascript, familia, ai
-read_time: 3 min
+read_time: "3 min"
 ---
-# Acortando distancias: Un reloj dual para Elliot
-
 A veces, la distancia no se mide en kilómetros, sino en zonas horarias. Al estar en España mientras mi hijo Elliot, de 6 años, vive en Colombia, me enfrenté a un reto diario: él no entendía por qué yo estaba durmiendo cuando para él era de día. Se enojaba pensando que no quería contestarle el teléfono. 
 
 Fue gracias a la idea amorosa y comprensiva de mi novia y compañera de vida que decidí buscar una solución. Combinando mi experiencia técnica y el uso de Gemini CLI para orquestar modelos de lenguaje y acelerar la creación del código, nació [ElliotWatch](https://posesco.github.io/ElliotWatch/).

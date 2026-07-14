@@ -1,12 +1,11 @@
 ---
-title: The Wave 2026, Zaragoza’s European Technology Summit
-date: 13/04/2026
+slug: the_wave_2026
+title: "The Wave 2026, Zaragoza’s European Technology Summit"
+date: "13/04/2026"
 draft: false
 tags: thewave, technology, zaragoza, networking, datacenter
-read_time: 4 min
+read_time: "4 min"
 ---
-
-# The Wave 2026: Innovación y Tecnología en el Corazón de Zaragoza
 
 Zaragoza se prepara para recibir una de las citas tecnológicas más importantes del año: **The Wave 2026**. Del **14 al 16 de abril**, el Palacio de Congresos de la ciudad se transformará en el epicentro de la innovación, conectando el talento técnico con las oportunidades de negocio más disruptivas de Europa.
 

@@ -1,0 +1,62 @@
+---
+import { site, type Locale } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  locale: Locale;
+  home?: boolean;
+  blog?: boolean;
+  languageHref?: string;
+  languageLabel?: string;
+}
+
+const { locale, home = false, blog = false, languageHref, languageLabel } = Astro.props;
+const labels = locale === 'en'
+  ? { primary: 'Primary navigation', menu: 'Menu', home: 'Home', notes: 'Notes', approach: 'Approach', impact: 'Impact', lab: 'Lab', about: 'About', switchLanguage: 'Cambiar a español' }
+  : { primary: 'Navegación principal', menu: 'Menú', home: 'Inicio', notes: 'Notas', approach: 'Enfoque', impact: 'Impacto', lab: 'Laboratorio', about: 'Perfil', switchLanguage: 'Switch to English' };
+const links = home
+  ? [
+      { href: '#approach', label: labels.approach },
+      { href: '#impact', label: labels.impact },
+      { href: '#lab', label: labels.lab },
+      { href: '#about', label: labels.about },
+      { href: '/blog/', label: labels.notes },
+    ]
+  : [
+      { href: `/${locale}/`, label: labels.home },
+      { href: '/blog/', label: labels.notes, current: blog },
+    ];
+---
+<header class="site-header wrap">
+  <a class="brand" href={`/${locale}/`} aria-label={`${site.shortName} · ${labels.home}`}>
+    <span class="brand-mark" aria-hidden="true">JP</span><span>{site.shortName}</span>
+  </a>
+  <nav class="desktop-nav" aria-label={labels.primary}>
+    {links.map((link) => <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>)}
+  </nav>
+  <div class="header-actions">
+    {languageHref && languageLabel && <a class="language desktop-language" href={languageHref} lang={locale === 'en' ? 'es' : 'en'} aria-label={labels.switchLanguage}>{languageLabel}</a>}
+    <ThemeToggle locale={locale} />
+    <details class="mobile-menu">
+      <summary><span>{labels.menu}</span><span class="menu-icon" aria-hidden="true"></span></summary>
+      <nav class="mobile-nav" aria-label={labels.primary}>
+        {links.map((link) => <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>)}
+        {languageHref && languageLabel && <a class="language" href={languageHref} lang={locale === 'en' ? 'es' : 'en'} aria-label={labels.switchLanguage}>{languageLabel}</a>}
+      </nav>
+    </details>
+  </div>
+</header>
+<script is:inline>
+  (() => {
+    const header = document.currentScript?.previousElementSibling;
+    if (!(header instanceof HTMLElement)) return;
+
+    const menu = header.querySelector('details.mobile-menu');
+    if (!(menu instanceof HTMLDetailsElement)) return;
+
+    menu.addEventListener('click', (event) => {
+      const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+      if (link instanceof HTMLAnchorElement && link.origin === window.location.origin) menu.open = false;
+    });
+  })();
+</script>

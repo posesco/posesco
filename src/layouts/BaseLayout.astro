@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+import { site, type Locale } from '../data/site';
+
+interface Props { locale: Locale; title: string; description: string; alternatePath?: string; ogType?: 'website' | 'article'; noindex?: boolean; canonical?: boolean }
+const { locale, title, description, alternatePath, ogType = 'website', noindex = false, canonical: showCanonical = true } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url);
+const alternateLocale = locale === 'en' ? 'es' : 'en';
+const socialImage = new URL('/avatar.jpg', site.url);
+const socialImageAlt = locale === 'en' ? 'Portrait of Jesús Posada' : 'Retrato de Jesús Posada';
+const personSchema = {
+  '@context': 'https://schema.org', '@type': 'Person', name: site.name, url: site.url,
+  jobTitle: 'Site Reliability Engineer',
+  sameAs: [site.linkedin, site.github],
+  knowsAbout: ['Site Reliability Engineering', 'Observability', 'Cloud automation', 'FinOps', 'Infrastructure as Code'],
+};
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#f2f0e8" />
+    <script is:inline>
+      (() => {
+        let stored;
+        try { stored = localStorage.getItem('theme'); } catch {}
+        if (stored === 'light' || stored === 'dark') document.documentElement.dataset.theme = stored;
+        const dark = stored === 'dark' || (!stored && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#111713' : '#f2f0e8');
+      })();
+    </script>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {showCanonical && <link rel="canonical" href={canonical} />}
+    {alternatePath && <link rel="alternate" hreflang={locale} href={canonical} />}
+    {alternatePath && <link rel="alternate" hreflang={alternateLocale} href={new URL(alternatePath, site.url)} />}
+    {alternatePath && <link rel="alternate" hreflang="x-default" href={new URL('/en/', site.url)} />}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.shortName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'es_ES'} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
+    <title>{title} · {site.shortName}</title>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body><slot /></body>
+</html>

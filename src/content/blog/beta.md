@@ -1,12 +1,11 @@
 ---
-title: Piensa como un SRE 🧠
-date: 06/05/2026
+slug: beta
+title: "Piensa como un SRE 🧠"
+date: "06/05/2026"
 draft: false
 tags: sre, carrera, sistemas
-read_time: 2 min
+read_time: "2 min"
 ---
-# Deja de apagar incendios y diseña tu carrera como un SRE
-
 Muchos profesionales pasan el día resolviendo urgencias y olvidan pensar a largo plazo, es decir solo hacen trabajo reactivo. En un excelente análisis del canal **BettaTech**, el autor nos explica cómo evitar este ciclo.
 
 Aquí tienes la esencia del video desde la perspectiva de un Site Reliability Engineer (SRE):
