@@ -45,9 +45,10 @@ h1 { max-width:1050px; margin-bottom:32px; font:600 clamp(3.5rem, 7.2vw, 7rem)/.
 .text-link { display:inline-flex; gap:20px; font:500 12px var(--mono); text-transform:uppercase; letter-spacing:.04em; text-decoration:none; }
 .proof { padding-block:80px 96px; border-top:1px solid var(--line); }
 .metrics { display:grid; grid-template-columns:1fr 1fr; gap:64px; }
-.metric { padding-right:50px; }
-.metric + .metric { border-left:1px solid var(--line); padding-left:64px; }
-.metric strong { display:block; color:var(--green); font:600 clamp(4rem, 7vw, 7rem)/.9 var(--serif); letter-spacing:-.04em; }
+.metric { padding:0 40px 40px 0; border-bottom:1px solid var(--line); }
+.metric:nth-child(even) { padding-right:0; padding-left:64px; border-left:1px solid var(--line); }
+.metric:nth-child(n+3) { padding-top:44px; border-bottom:0; }
+.metric strong { display:block; color:var(--green); font:600 clamp(3.25rem, 6vw, 6rem)/.9 var(--serif); letter-spacing:-.04em; }
 .metric h2 { margin:16px 0 12px; font:600 1.1rem var(--mono); text-transform:uppercase; }
 .metric p { max-width:470px; color:var(--muted); }
 .fine-print { margin:55px 0 0; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font:400 11px/1.6 var(--mono); }
@@ -110,8 +111,8 @@ h1 { max-width:1050px; margin-bottom:32px; font:600 clamp(3.5rem, 7.2vw, 7rem)/.
   .hero { min-height:auto; padding-block:76px; }
   h1 { font-size:clamp(3rem, 13vw, 5rem); }
   .metrics,.impact-list,.story-grid { grid-template-columns:1fr; gap:28px; }
-  .metric { padding:0; }
-  .metric + .metric { padding:42px 0 0; border-left:0; border-top:1px solid var(--line); }
+  .metric,.metric:nth-child(even),.metric:nth-child(n+3) { padding:0; border:0; }
+  .metric + .metric { padding-top:42px; border-top:1px solid var(--line); }
   .thesis,.impact,.lab,.story { padding-block:80px; }
   .section-heading { display:block; margin-bottom:45px; }
   .section-heading p { margin-top:20px; }

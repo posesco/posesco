@@ -12,19 +12,19 @@ interface Props {
 
 const { locale, home = false, blog = false, languageHref, languageLabel } = Astro.props;
 const labels = locale === 'en'
-  ? { primary: 'Primary navigation', menu: 'Menu', home: 'Home', notes: 'Notes', approach: 'Approach', impact: 'Impact', lab: 'Lab', about: 'About', switchLanguage: 'Cambiar a español' }
-  : { primary: 'Navegación principal', menu: 'Menú', home: 'Inicio', notes: 'Notas', approach: 'Enfoque', impact: 'Impacto', lab: 'Laboratorio', about: 'Perfil', switchLanguage: 'Switch to English' };
-const links = home
+  ? { primary: 'Primary navigation', menu: 'Menu', home: 'Home', notes: 'Notes (ES)', approach: 'Scope', impact: 'Impact', lab: 'Lab', about: 'About', switchLanguage: 'Cambiar a español' }
+  : { primary: 'Navegación principal', menu: 'Menú', home: 'Inicio', notes: 'Notas', approach: 'Alcance', impact: 'Impacto', lab: 'Laboratorio', about: 'Perfil', switchLanguage: 'Switch to English' };
+const links: Array<{ href: string; label: string; current?: boolean; lang?: 'es' }> = home
   ? [
-      { href: '#approach', label: labels.approach },
       { href: '#impact', label: labels.impact },
+      { href: '#approach', label: labels.approach },
       { href: '#lab', label: labels.lab },
       { href: '#about', label: labels.about },
-      { href: '/blog/', label: labels.notes },
+      { href: '/blog/', label: labels.notes, lang: locale === 'en' ? 'es' : undefined },
     ]
   : [
       { href: `/${locale}/`, label: labels.home },
-      { href: '/blog/', label: labels.notes, current: blog },
+      { href: '/blog/', label: labels.notes, current: blog, lang: locale === 'en' ? 'es' : undefined },
     ];
 ---
 <header class="site-header wrap">
@@ -32,7 +32,7 @@ const links = home
     <span class="brand-mark" aria-hidden="true">JP</span><span>{site.shortName}</span>
   </a>
   <nav class="desktop-nav" aria-label={labels.primary}>
-    {links.map((link) => <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>)}
+    {links.map((link) => <a href={link.href} lang={link.lang} aria-current={link.current ? 'page' : undefined}>{link.label}</a>)}
   </nav>
   <div class="header-actions">
     {languageHref && languageLabel && <a class="language desktop-language" href={languageHref} lang={locale === 'en' ? 'es' : 'en'} aria-label={labels.switchLanguage}>{languageLabel}</a>}
@@ -40,7 +40,7 @@ const links = home
     <details class="mobile-menu">
       <summary><span>{labels.menu}</span><span class="menu-icon" aria-hidden="true"></span></summary>
       <nav class="mobile-nav" aria-label={labels.primary}>
-        {links.map((link) => <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>)}
+        {links.map((link) => <a href={link.href} lang={link.lang} aria-current={link.current ? 'page' : undefined}>{link.label}</a>)}
         {languageHref && languageLabel && <a class="language" href={languageHref} lang={locale === 'en' ? 'es' : 'en'} aria-label={labels.switchLanguage}>{languageLabel}</a>}
       </nav>
     </details>

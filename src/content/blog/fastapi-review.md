@@ -17,7 +17,7 @@ Pero hay una motivación más profunda, y es la que mantiene el proyecto vivo. U
 
 ## El punto de partida: ¿por qué FastAPI?
 
-FastAPI se ha consolidado como el framework de referencia para construir APIs en Python moderno. Su propuesta es directa: rendimiento comparable a Node.js o Go gracias a su base asíncrona (Starlette + ASIO), validación automática de datos con Pydantic, y documentación OpenAPI generada sin esfuerzo.
+FastAPI es una opción popular para construir APIs en Python moderno. Su propuesta combina una base asíncrona sobre Starlette y ASGI, validación de datos con Pydantic y generación de documentación OpenAPI.
 
 Pero más allá del rendimiento, lo que hace interesante a FastAPI para un proyecto de aprendizaje es que te obliga a pensar en tipos, en contratos de datos, en separación de responsabilidades. No te deja escribir código descuidado sin que se note.
 
@@ -124,7 +124,7 @@ pytest --cov=src --cov-report=xml
 ./helpers/sonar-scan.sh
 ```
 
-Los quality gates bloquean el avance si la cobertura cae por debajo del umbral o si aparecen vulnerabilidades críticas. Esto no es solo una métrica de vanidad; es un contrato de calidad mínima.
+En este laboratorio, los quality gates están configurados para bloquear el avance si la cobertura cae por debajo del umbral o si aparecen vulnerabilidades críticas. Son una práctica de aprendizaje, no evidencia de operación a escala productiva.
 
 ### CI/CD con GitHub Actions
 
@@ -189,7 +189,7 @@ La iteración también es clave. Rara vez la primera propuesta es la definitiva.
 
 El valor de un proyecto como este no está en el dominio de negocio (una API de películas es deliberadamente simple). Está en las decisiones de ingeniería que lo rodean: cómo se organiza el código, cómo se gestiona el estado compartido, cómo se instrumenta para ser observable, cómo se garantiza la calidad de forma automatizada.
 
-Cada patrón aplicado aquí tiene un equivalente directo en sistemas de producción reales. La diferencia es la escala, no los principios.
+Los patrones explorados aquí son relevantes para conversaciones de producción, pero el laboratorio no valida por sí mismo su comportamiento, coste ni operación a escala real.
 
 El repositorio está disponible en:
 [https://github.com/posesco/fastapi-project](https://github.com/posesco/fastapi-project)
