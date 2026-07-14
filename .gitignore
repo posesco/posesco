@@ -405,3 +405,6 @@ coverage/
 .env*
 !.env.example
 .astro/
+
+# Local generated skill-registry state
+.atl/
