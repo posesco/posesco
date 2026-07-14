@@ -3,34 +3,37 @@ import BaseLayout from './BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import { site } from '../data/site';
 const { frontmatter } = Astro.props;
-const topics = String(frontmatter.tags ?? 'SRE, automatización y tecnología')
+const tags = String(frontmatter.tags ?? 'SRE, automatización y tecnología')
   .split(',')
   .map((tag) => tag.trim())
-  .filter(Boolean)
-  .join(', ');
+  .filter(Boolean);
+const topics = tags.join(', ');
 const description = frontmatter.description ?? `Artículo de Jesús Posada sobre ${topics}.`;
 const canonical = new URL(Astro.url.pathname, site.url);
+const datePublished = String(frontmatter.date).split('/').reverse().join('-');
 const blogPostingSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: frontmatter.title,
   description,
-  datePublished: String(frontmatter.date).split('/').reverse().join('-'),
+  datePublished,
   inLanguage: 'es',
+  keywords: tags,
   url: canonical.href,
-  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical.href },
-  author: { '@type': 'Person', name: site.name, url: site.url },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${canonical.href}#webpage` },
+  isPartOf: { '@id': new URL('/#website', site.url).href },
+  author: { '@id': new URL('/#person', site.url).href },
 };
 const blogPostingJsonLd = JSON.stringify(blogPostingSchema).replace(/</g, '\\u003c');
 ---
-<BaseLayout locale="es" title={frontmatter.title} description={description} ogType="article">
+<BaseLayout locale="es" title={frontmatter.title} description={description} ogType="article" publishedTime={datePublished} articleTags={tags}>
   <script is:inline type="application/ld+json" set:html={blogPostingJsonLd} />
   <a class="skip-link" href="#article">Saltar al artículo</a>
   <SiteHeader locale="es" blog />
   <main id="article" class="article-shell wrap">
     <p class="article-meta">NOTA · {frontmatter.date} · {frontmatter.read_time}</p>
     <h1>{frontmatter.title}</h1>
-    <div class="article-tags">{String(frontmatter.tags).split(',').map((tag: string) => <span>{tag.trim()}</span>)}</div>
+    <div class="article-tags">{tags.map((tag) => <span>{tag}</span>)}</div>
     <article class="prose"><slot /></article>
     <a class="article-back" href="/blog/">← Volver a todas las notas</a>
   </main>

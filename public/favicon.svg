@@ -1,7 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#020617"/>
-  <text x="3" y="24" font-family="monospace" font-weight="bold" font-size="24" fill="#6366f1">[</text>
-  <text x="11" y="21" font-family="sans-serif" font-weight="bold" font-size="16" fill="#f8fafc">p</text>
-  <text x="21" y="24" font-family="monospace" font-weight="bold" font-size="24" fill="#6366f1">]</text>
-  <path d="M24 7l.4 1.2 1.2.4-1.2.4-.4 1.2-.4-1.2-1.2-.4 1.2-.4z" fill="#818cf8" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .background { fill: #174d36; }
+    .monogram { fill: none; stroke: #f2f0e8; }
+    .signal { fill: #b7db36; }
+    @media (prefers-color-scheme: dark) {
+      .background { fill: #f2f0e8; }
+      .monogram { stroke: #174d36; }
+      .signal { fill: #a04d31; }
+    }
+  </style>
+  <rect class="background" width="64" height="64" />
+  <path class="monogram" d="M28 15v23c0 7-4 11-11 11-3 0-6-1-8-3M37 49V15h8c7 0 11 3 11 9s-4 9-11 9h-8" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter" />
+  <rect class="signal" x="8" y="8" width="7" height="7" />
 </svg>
