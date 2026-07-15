@@ -19,8 +19,8 @@ export const content = {
     eyebrow: 'SENIOR SRE · PLATFORM ENGINEERING · CLOUD & DEVOPS',
     hero: 'I build reliable platforms and turn complex operations into measurable outcomes.',
     intro: 'Senior SRE and Platform Engineer with 7+ years across critical and regulated systems. Based in Zaragoza, Spain, and open to international remote opportunities and relocation.',
-    connect: 'Connect on LinkedIn', explore: 'Explore selected impact',
-    proofLabel: 'Evidence at a glance',
+    connect: 'Connect on LinkedIn', explore: 'Explore impact and leadership',
+    proofLabel: 'Impact at a glance',
     metrics: [
       { value: '75%', label: 'less operational time', detail: 'Reduced a recurring four-day workflow to one through end-to-end pipelines and automation.' },
       { value: '~287h', label: 'engineering time freed yearly', detail: 'Reduced an eight-hour execution to about two minutes with reusable, template-driven automation.' },
@@ -57,8 +57,8 @@ export const content = {
     eyebrow: 'SENIOR SRE · PLATFORM ENGINEERING · CLOUD Y DEVOPS',
     hero: 'Construyo plataformas fiables y convierto operaciones complejas en resultados medibles.',
     intro: 'Senior SRE y Platform Engineer con más de 7 años en sistemas críticos y regulados. Resido en Zaragoza, España, y estoy abierto a oportunidades internacionales en remoto y reubicación.',
-    connect: 'Conectar en LinkedIn', explore: 'Explorar impacto seleccionado',
-    proofLabel: 'Evidencia en breve',
+    connect: 'Conectar en LinkedIn', explore: 'Explorar impacto y liderazgo',
+    proofLabel: 'Impacto de un vistazo',
     metrics: [
       { value: '75%', label: 'menos tiempo operativo', detail: 'Reduje un proceso recurrente de cuatro días a uno mediante pipelines y automatización end-to-end.' },
       { value: '~287 h', label: 'de ingeniería liberadas al año', detail: 'Reduje una ejecución de ocho horas a unos dos minutos con automatización reutilizable y basada en plantillas.' },
