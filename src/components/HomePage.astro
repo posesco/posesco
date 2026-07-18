@@ -72,7 +72,12 @@ const t = content[locale];
       <div class="section-label"><span>05</span><span>{t.storyEyebrow}</span></div>
       <div class="story-grid">
         <div><h2>{t.storyTitle}</h2><p>{t.storyText}</p></div>
-        <div class="human"><h3>{t.humanTitle}</h3><p>{t.humanText}</p></div>
+        <div class="human">
+          <div class="profile-portrait">
+            <img src="/avatar.jpg" alt="Portrait of Jesús Posada" width="1812" height="1929" loading="lazy" decoding="async" />
+          </div>
+          <h3>{t.humanTitle}</h3><p>{t.humanText}</p>
+        </div>
       </div>
     </section>
   </main>

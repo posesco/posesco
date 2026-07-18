@@ -81,6 +81,8 @@ h1 { max-width:1050px; margin-bottom:32px; font:600 clamp(3.5rem, 7.2vw, 7rem)/.
 .story-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:100px; }
 .story-grid p { max-width:680px; margin-top:30px; color:var(--muted); font-size:1.1rem; }
 .human { border-left:1px solid var(--line); padding-left:50px; }
+.profile-portrait { width:180px; height:220px; margin-bottom:32px; overflow:hidden; border:1px solid var(--line); }
+.profile-portrait img { display:block; width:100%; height:100%; object-fit:cover; transform:scale(1.6); transform-origin:50% 28%; }
 .human h3 { font:600 2rem var(--serif); }
 .footer { padding-top:110px; background:var(--footer-bg); color:#f2f0e8; }
 .footer .section-label,.footer p { color:var(--footer-muted); }
@@ -121,6 +123,7 @@ h1 { max-width:1050px; margin-bottom:32px; font:600 clamp(3.5rem, 7.2vw, 7rem)/.
   .lab-card { padding:28px; }
   .lab-card h2 { margin-top:75px; font-size:clamp(2.6rem,12vw,4rem); }
   .human { padding:40px 0 0; border-left:0; border-top:1px solid var(--line); }
+  .profile-portrait { width:150px; height:184px; margin-bottom:28px; }
   .footer { padding-top:80px; }
   .footer-bottom { margin-top:70px; }
 }
