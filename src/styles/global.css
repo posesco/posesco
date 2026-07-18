@@ -70,8 +70,9 @@ h1 { max-width:1050px; margin-bottom:32px; font:600 clamp(3.5rem, 7.2vw, 7rem)/.
 .impact-card h3 { margin:72px 0 22px; font:600 2.25rem/1.05 var(--serif); }
 .impact-card p { color:var(--muted); }
 .impact-card strong { margin-top:auto; padding-top:24px; border-top:1px solid var(--surface-line); color:var(--green); font:500 12px var(--mono); text-transform:uppercase; }
+.lab-list { display:grid; gap:24px; }
 .lab-card { padding:48px; background:var(--panel); color:#f4f2e9; }
-.lab-top { color:#c9d9ce; }
+.lab-top { flex-wrap:wrap; gap:12px 24px; color:#c9d9ce; }
 .status { display:flex; gap:9px; align-items:center; }
 .status i { width:8px; height:8px; border-radius:50%; background:var(--signal); box-shadow:0 0 0 4px rgb(183 219 54 / 15%); }
 .lab-card h2 { margin:110px 0 18px; font:600 clamp(3.5rem, 7vw, 6.5rem)/.9 var(--serif); }
@@ -118,7 +119,7 @@ h1 { max-width:1050px; margin-bottom:32px; font:600 clamp(3.5rem, 7.2vw, 7rem)/.
   .section-heading p { margin-top:20px; }
   .impact-card { min-height:340px; }
   .lab-card { padding:28px; }
-  .lab-card h2 { margin-top:75px; }
+  .lab-card h2 { margin-top:75px; font-size:clamp(2.6rem,12vw,4rem); }
   .human { padding:40px 0 0; border-left:0; border-top:1px solid var(--line); }
   .footer { padding-top:80px; }
   .footer-bottom { margin-top:70px; }

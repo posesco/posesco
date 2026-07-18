@@ -57,11 +57,15 @@ const t = content[locale];
 
     <section id="lab" class="lab wrap section-grid">
       <div class="section-label"><span>04</span><span>{t.labEyebrow}</span></div>
-      <article class="lab-card">
-        <div class="lab-top"><span class="status"><i></i>{t.labStatus}</span><span>Terraform · AWS · FinOps</span></div>
-        <h2>{t.labTitle}</h2><p>{t.labText}</p>
-        <a class="button dark" href={site.awsLab} target="_blank" rel="noreferrer">{t.labCta}<span aria-hidden="true">↗</span></a>
-      </article>
+      <div class="lab-list">
+        {t.labs.map((lab) => (
+          <article class="lab-card" aria-labelledby={`lab-title-${lab.id}`}>
+            <div class="lab-top"><span class="status"><i aria-hidden="true"></i>{lab.status}</span><span>{lab.areas}</span></div>
+            <h2 id={`lab-title-${lab.id}`}>{lab.title}</h2><p>{lab.text}</p>
+            <a class="button dark" href={lab.href} target="_blank" rel="noreferrer" aria-label={lab.linkLabel}>{lab.cta}<span aria-hidden="true">↗</span></a>
+          </article>
+        ))}
+      </div>
     </section>
 
     <section id="about" class="story wrap section-grid">

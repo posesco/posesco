@@ -6,6 +6,7 @@ export const site = {
   linkedin: 'https://www.linkedin.com/in/posesco/',
   github: 'https://github.com/posesco',
   awsLab: 'https://github.com/posesco/AWSLab',
+  softwareDevelopmentLab: 'https://github.com/posesco/movie-fastapi-project',
 };
 
 export type Locale = 'en' | 'es';
@@ -41,8 +42,11 @@ export const content = {
       { index: '01', tag: 'Operating impact', title: 'Make recurring work safe, visible, and repeatable', text: 'Built reusable automation that connects delivery, configuration, scripting, and service workflows into traceable operational paths.', result: 'Designed for critical and regulated systems' },
       { index: '02', tag: 'Technical leadership', title: 'Build autonomy, not dependency', text: 'Enabled a 15-person team through 36+ annual sessions on pipelines, testing, and failure analysis; 3 engineers went on to deliver custom pipelines and end-to-end tests autonomously.', result: 'Knowledge transferred into team capability' },
     ],
-    labEyebrow: 'ACTIVE LAB', labTitle: 'AWSLab', labText: 'A hands-on AWS environment built with modular Terraform, remote state, IAM/OIDC, budgets, cost reporting, tagging guardrails, and deliberate teardown. It is a learning system—not a finished product—and its progress is public.',
-    labCta: 'View the lab on GitHub', labStatus: 'BUILDING IN PUBLIC',
+    labEyebrow: 'ACTIVE LABS',
+    labs: [
+      { id: 'aws', title: 'AWSLab', text: 'A hands-on AWS environment built with modular Terraform, remote state, IAM/OIDC, budgets, cost reporting, tagging guardrails, and deliberate teardown. It is a learning system—not a finished product—and its progress is public.', cta: 'View the lab on GitHub', linkLabel: 'View AWSLab on GitHub', status: 'BUILDING IN PUBLIC', areas: 'Terraform · AWS · FinOps', href: site.awsLab },
+      { id: 'software-development', title: 'Software Development Lab', text: 'A living FastAPI laboratory for learning the software-delivery lifecycle from a developer’s perspective. The movie domain provides the functional context for understanding developer needs, decisions, constraints, and experience, complementing my infrastructure, cloud, platform, and operations expertise.', cta: 'View the lab on GitHub', linkLabel: 'View Software Development Lab on GitHub', status: 'EVOLVING LAB', areas: 'FastAPI / API design · PostgreSQL / data · Testing / quality · Containers · Observability experiments', href: site.softwareDevelopmentLab },
+    ],
     storyEyebrow: 'CAREER THREAD', storyTitle: 'Close to the systems. Focused on their value.',
     storyText: 'My path runs from telecommunications and physical infrastructure through Linux, cloud, observability, and SRE. That range helps me see the whole operating system—not just one tool or layer.',
     humanTitle: 'Curious, practical, responsible.', humanText: 'I learn by building labs, testing languages and frameworks, joining meetups, and sharing the useful parts. I am interested in AI and emerging infrastructure, but not technology for show. I prefer making the most of what already exists—with care for time, cost, and the people depending on it.',
@@ -78,8 +82,11 @@ export const content = {
       { index: '01', tag: 'Impacto operativo', title: 'Hacer el trabajo recurrente seguro, visible y repetible', text: 'Construí automatización reutilizable que conecta entregas, configuración, scripting y flujos de servicio en recorridos operativos trazables.', result: 'Diseñado para sistemas críticos y regulados' },
       { index: '02', tag: 'Liderazgo técnico', title: 'Crear autonomía, no dependencia', text: 'Impulsé la autonomía de un equipo de 15 personas mediante más de 36 sesiones anuales sobre pipelines, pruebas y análisis de fallos; 3 ingenieros pasaron a entregar pipelines y pruebas end-to-end de forma autónoma.', result: 'Conocimiento convertido en capacidad de equipo' },
     ],
-    labEyebrow: 'LABORATORIO ACTIVO', labTitle: 'AWSLab', labText: 'Un entorno práctico de AWS construido con Terraform modular, estado remoto, IAM/OIDC, presupuestos, informes de costes, guardrails de etiquetado y destrucción deliberada. Es un sistema de aprendizaje —no un producto terminado— y su progreso es público.',
-    labCta: 'Ver el laboratorio en GitHub', labStatus: 'CONSTRUYENDO EN PÚBLICO',
+    labEyebrow: 'LABORATORIOS ACTIVOS',
+    labs: [
+      { id: 'aws', title: 'AWSLab', text: 'Un entorno práctico de AWS construido con Terraform modular, estado remoto, IAM/OIDC, presupuestos, informes de costes, guardrails de etiquetado y destrucción deliberada. Es un sistema de aprendizaje —no un producto terminado— y su progreso es público.', cta: 'Ver el laboratorio en GitHub', linkLabel: 'Ver AWSLab en GitHub', status: 'CONSTRUYENDO EN PÚBLICO', areas: 'Terraform · AWS · FinOps', href: site.awsLab },
+      { id: 'software-development', title: 'Laboratorio de Desarrollo de Software', text: 'Un laboratorio vivo de FastAPI para aprender el ciclo de entrega de software desde la perspectiva de quien desarrolla. El dominio de películas aporta el contexto funcional para comprender sus necesidades, decisiones, restricciones y experiencia, complementando mi conocimiento de infraestructura, cloud, plataformas y operaciones.', cta: 'Ver el laboratorio en GitHub', linkLabel: 'Ver el Laboratorio de Desarrollo de Software en GitHub', status: 'LABORATORIO EN EVOLUCIÓN', areas: 'FastAPI / diseño de API · PostgreSQL / datos · Pruebas / calidad · Contenedores · Experimentos de observabilidad', href: site.softwareDevelopmentLab },
+    ],
     storyEyebrow: 'TRAYECTORIA', storyTitle: 'Cerca de los sistemas. Enfocado en su valor.',
     storyText: 'Mi recorrido va desde las telecomunicaciones y la infraestructura física hasta Linux, cloud, observabilidad y SRE. Esa amplitud me ayuda a ver el sistema operativo completo, no solo una herramienta o capa.',
     humanTitle: 'Curioso, práctico, responsable.', humanText: 'Aprendo construyendo laboratorios, probando lenguajes y frameworks, participando en meetups y compartiendo lo útil. Me interesan la IA y la infraestructura emergente, pero no la tecnología como exhibición. Prefiero aprovechar al máximo lo que ya existe, cuidando el tiempo, el coste y a las personas que dependen de ello.',
