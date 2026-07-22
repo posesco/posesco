@@ -6,7 +6,7 @@ I build reliable platforms and turn complex operations into measurable outcomes.
 
 Based in Zaragoza, Spain. Open to international remote opportunities and relocation.
 
-## Selected Impact
+## Impact
 
 - **75% less operational time:** reduced a recurring workflow from four days to one through end-to-end automation.
 - **~287 engineering hours freed annually:** reduced an eight-hour execution to about two minutes.
