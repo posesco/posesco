@@ -31,5 +31,3 @@ A hands-on AWS learning system and reusable pattern library covering modular Ter
 ## Connect
 
 [LinkedIn](https://www.linkedin.com/in/posesco/) is the best place to discuss Senior SRE, Platform Engineering, or relevant international opportunities.
-
-[Portfolio in English](https://jesusposada.website/en/) · [Portfolio en español](https://jesusposada.website/es/)
